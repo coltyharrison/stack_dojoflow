@@ -1,0 +1,63 @@
+<div id='dash-wrapper'>
+    <nav>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Profile</a></li>
+            <li><a href="#">Topics</a></li>
+        </ul>
+    </nav>
+    <div id='dash-body'>
+        <div id='recent_q'>
+            <h3>Recent Questions</h3>
+            <table>
+                <tr>
+                    <th>Question</th>
+                    <th>Topic</th>
+                    <th>Ninja</th>
+                    <th>Posted</th>
+                    <th>Upvotes</th>
+                </tr>
+                <tr ng-repeat='question in questions'>
+                    <td><a href="#!/show/{{question._id}}">{{question.question}}</a></td>
+                    <td>{{question.topic}}</td>
+                    <td>{{question.name}}</td>
+                    <td>Post Date</td>
+                    <td># of votes</td>
+                </tr>
+            </table>
+        </div>
+        <div id='pop_ninja'>
+            <h3>Popular Ninjas</h3>
+            <ul>
+                <li>ninja1 - stars</li>
+                <li>ninja2 - stars</li>
+            </ul>
+        </div>
+        <div id='pop_q'>
+            <h3>Recent Questions</h3>
+            <table>
+                <tr>
+                    <th>Question</th>
+                    <th>Topic</th>
+                    <th>Ninja</th>
+                    <th>Posted</th>
+                    <th>Upvotes</th>
+                </tr>
+                <tr>
+                    <td>Question 1</td>
+                    <td>topic</td>
+                    <td>Ninja name</td>
+                    <td>Post Date</td>
+                    <td># of votes</td>
+                </tr>
+            </table>
+        </div>
+        <div id='pop_topic'>
+            <h3>Popular Ninjas</h3>
+            <ul>
+                <li>MEAN - 100 questions</li>
+                <li>Python - 22 questions</li>
+            </ul>
+        </div>
+    </div>
+</div>
