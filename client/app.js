@@ -5,6 +5,9 @@ app.config(function($routeProvider) {
     .when('/', {
         templateUrl: 'partials/auth.html',
     })
+    .when('/topic/:id', {
+        templateUrl: 'partials/topic.html',
+    })
     .otherwise({
         redirectTo: '/'
     });
