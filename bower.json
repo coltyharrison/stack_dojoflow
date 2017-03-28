@@ -1,0 +1,22 @@
+{
+  "name": "stack_dojoflow",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "Colty Harrison <coltyharrison@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/coltyharrison/DojoAssignments",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap-social": "^5.1.1",
+    "angular": "^1.6.3",
+    "angular-route": "^1.6.3"
+  }
+}
