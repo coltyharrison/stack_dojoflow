@@ -1,0 +1,18 @@
+<!-- Topic Page -->
+<div>
+  <div>
+    <h1>{{ topic.name }}</h1>
+
+    <!-- Recent Questions (Probably limitTo), quanity below is set in scope -->
+    <!-- http://stackoverflow.com/questions/17643361/ngrepeat-limiting-number-of-displayed-results -->
+    <div ng-repeat="question in topic.questions | limitTo : quantity">
+      <a href="#!/show/{{question._id}}">{{ question.question }}</a>
+    </div>
+
+    <!-- List of Questions, ordered by popularity -->
+    <div ng-repeat="question in topic.questions | orderBy : 'ninja_stars' ">
+      <a href="#!/show/{{question._id}}">{{ question.question }}</a>
+    </div>
+
+  </div>
+</div>
