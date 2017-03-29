@@ -1,0 +1,30 @@
+<nav-bar></nav-bar>
+{{user}}
+<div class='ui grid'>
+    <div class="four wide column">
+        <div class="ui card">
+            <div class="image">
+                <img src="{{user.avatar_url}}">
+            </div>
+            <div class="content">
+                <div class="header">{{user.name}}</div>
+                <div class="meta">
+                    <img height="20" src='https://cdn0.iconfinder.com/data/icons/octicons/1024/mark-github-128.png'><a href="{{user.url}}">{{user.login}}</a>
+                </div>
+                <div class="description">
+                    {{user.bio}}
+                </div>
+            </div>
+            <div class="extra content">
+                <span class="right floated">
+                {{user.location}}
+              </span>
+                <span>
+                <img height='20' src="https://cdn4.iconfinder.com/data/icons/weapons-solid-icons-vol-1/72/49-128.png"> 23
+              </span>
+            </div>
+        </div>
+    </div>
+    <div class="twelve wide column">
+    </div>
+</div>

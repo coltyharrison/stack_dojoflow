@@ -72,4 +72,8 @@ module.exports = function(app) {
     app.get('/getUser', function(req, res) {
         users.getUser(req, res);
     });
+
+    app.get('/logOut', function(req, res) {
+        users.logOut(req, res);
+    });
 };

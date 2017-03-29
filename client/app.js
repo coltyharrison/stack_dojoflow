@@ -15,6 +15,10 @@ app.config(function($routeProvider) {
     .when('/topic/:id', {
         templateUrl: 'partials/topic.html',
     })
+    .when('/user/:id', {
+        templateUrl: 'partials/user.html',
+        controller: 'userController'
+    })
     .otherwise({
         redirectTo: '/'
     });

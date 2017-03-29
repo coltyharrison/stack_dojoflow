@@ -17,5 +17,13 @@ app.factory('userFactory', function($http, $location) {
             });
         }
     };
+
+    factory.logOut = function() {
+        $http.get('/logOut')
+        .then(function() {
+            user = {};
+            $location.url('/');
+        });
+    };
     return factory;
 });
