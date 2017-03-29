@@ -18,5 +18,15 @@ app.factory('questionFactory', function($http,$location,$route){
       comment.question_id = question_id
       $http.post('/createComment',comment)
     }
+    factory.createAnswer = function(answer, question_id) {
+      answer.question_id = question_id
+      $http.post('/createAnswer',answer)
+    }
+    factory.createAnswerComment = function(comment, answer_id) {
+      comment.answer_id = answer_id
+      $http.post('/createAnswerComment', comment)
+    }
+
+
     return factory;
 })

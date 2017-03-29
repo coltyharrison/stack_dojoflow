@@ -6,7 +6,6 @@ var passport = require('passport'),
     User = mongoose.model('User'),
     GitHubStrategy = require('passport-github').Strategy,
     users = require('./../controllers/userController.js'),
-    questionsession = require('./../controllers/dashController.js');
 
     // Backend question controller, to handle question and question comments
     questionController = require('./../controllers/questionController.js')
@@ -56,14 +55,6 @@ module.exports = function(app) {
         failureRedirect: '/error'
     }));
 
-    // app.get('/getquestions', function(req, res){
-    //   questionsession.getquestions(req, res);
-    // });
-    //
-    // app.post('/createQuestion', function(req, res){
-    //   questionsession.create(req, res);
-    // });
-
     app.get('/getQuestions', function(req, res){
       questionController.getQuestions(req, res);
     });
@@ -75,6 +66,14 @@ module.exports = function(app) {
     app.post('/createComment', function(req, res) {
       questionController.createComment(req, res)
     });
+
+    app.post('/createAnswer', function(req, res) {
+      questionController.createAnswer(req, res)
+    })
+
+    app.post('/createAnswerComment', function(req, res) {
+      questionController.createAnswerComment(req, res)
+    })
 
     app.get('/success', function(req, res, next) {
         res.redirect('/#!/dash');
