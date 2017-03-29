@@ -5,9 +5,7 @@ var User = mongoose.model('User')
 module.exports = (function(){
   return {
     createQuestion: function(req, res){
-      console.log("This the git id",req.user.id)
       User.findOne({id:req.user.id}, function(err,user) {
-        console.log("user...",user)
         var newQuestion = new Question({
           title: req.body.title,
           desription: req.body.description,
@@ -15,12 +13,15 @@ module.exports = (function(){
           posted_at: new Date(),
           _user: user._id,
         })
+
+
+
         newQuestion.save(function(err, data) {
           if (err) {
             console.log(err)
           } else {
-            console.log("user id",user._id)
-            console.log("New question added.")
+            user.questions.push(newQuestion._id)
+            user.save()
             res.json(data)
           }
         })
