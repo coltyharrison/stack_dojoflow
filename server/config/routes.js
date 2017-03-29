@@ -87,4 +87,8 @@ module.exports = function(app) {
     app.get('/logOut', function(req, res) {
         users.logOut(req, res);
     });
+
+    app.get('/getProfileUser/:id', function(req, res) {
+        users.getProfileUser(req, res);
+    });
 };

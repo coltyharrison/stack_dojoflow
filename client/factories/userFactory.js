@@ -1,7 +1,6 @@
 app.factory('userFactory', function($http, $location) {
     var factory = {};
     var user = {};
-    var profileUser = {};
     factory.getUser = function(cb) {
         if (Object.keys(user).length > 0) {
             cb(user);
@@ -24,6 +23,18 @@ app.factory('userFactory', function($http, $location) {
         .then(function() {
             user = {};
             $location.url('/');
+        });
+    };
+
+    factory.getProfileUser = function(id, cb) {
+        $http.get('/getProfileUser/' + id)
+        .then(function(output) {
+            if (output.data) {
+                cb(output.data);
+            } else {
+                $location.url('/dash');
+                cb(false);
+            }
         });
     };
     return factory;

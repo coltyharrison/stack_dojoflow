@@ -1,30 +1,74 @@
 <nav-bar></nav-bar>
-{{user}}
+<br>
 <div class='ui grid'>
     <div class="four wide column">
         <div class="ui card">
             <div class="image">
-                <img src="{{user.avatar_url}}">
+                <img src="{{profileUser.avatar_url}}">
             </div>
             <div class="content">
-                <div class="header">{{user.name}}</div>
+                <div class="header">{{profileUser.name}}</div>
                 <div class="meta">
-                    <img height="20" src='https://cdn0.iconfinder.com/data/icons/octicons/1024/mark-github-128.png'><a href="{{user.url}}">{{user.login}}</a>
+                    <img height="20" src='images/github_logo.png'><a href="{{profileUser.url}}">{{profileUser.login}}</a>
                 </div>
                 <div class="description">
-                    {{user.bio}}
+                    {{profileUser.bio}}
                 </div>
             </div>
             <div class="extra content">
                 <span class="right floated">
-                {{user.location}}
+                {{profileUser.location}}
               </span>
                 <span>
-                <img height='20' src="https://cdn4.iconfinder.com/data/icons/weapons-solid-icons-vol-1/72/49-128.png"> 23
+                <img height='20' src="images/ninjastar.png"> 23
               </span>
             </div>
         </div>
     </div>
     <div class="twelve wide column">
+        <h2>Questions Asked</h2>
+        <div class="ui center aligned segment" ng-if='profileUser.questions.length === 0'>
+          <h3><em>No Questions...</em></h3>
+        </div>
+        <table class="ui inverted small table" ng-if='profileUser.questions.length > 0'>
+          <thead>
+            <tr>
+                <th>Question</th>
+                <th>Topic</th>
+                <th>Posted</th>
+                <th>Upvotes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat='question in profileUser.questions'>
+                <td><a href="#!/show/{{question._id}}">{{question.title}}</a></td>
+                <td>{{question.topic}}</td>
+                <td>{{question.posted_at | date:'medium'}}</td>
+                <td>{{question.upvotes}}</td>
+            </tr>
+          </tbody>
+        </table>
+        <h2>Answers Given</h2>
+        <div class="ui center aligned segment" ng-if='profileUser.answers.length === 0'>
+          <h3><em>No Answers...</em></h3>
+        </div>
+        <table class="ui small table" ng-if='profileUser.answers.length > 0'>
+          <thead>
+            <tr>
+                <th>Question</th>
+                <th>Topic</th>
+                <th>Posted</th>
+                <th>Upvotes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat='question in profileUser.questions'>
+                <td><a href="#!/show/{{question._id}}">{{question.title}}</a></td>
+                <td>{{question.topic}}</td>
+                <td>{{question.posted_at | date:'medium'}}</td>
+                <td>{{question.upvotes}}</td>
+            </tr>
+          </tbody>
+        </table>
     </div>
 </div>

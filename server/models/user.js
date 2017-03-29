@@ -32,7 +32,7 @@ var mongoose = require('mongoose'),
         ninja_stars: {type: Number, default: 0},
         favorites: [{type: mongoose.Schema.Types.ObjectId, ref: 'Question'}],
         questions: [{type: mongoose.Schema.Types.ObjectId, ref: 'Question'}],
-        answers: [{type: mongoose.Schema.Types.ObjectId, ref: 'Answers'}],
+        answers: [{type: mongoose.Schema.Types.ObjectId, ref: 'Answer'}],
         comments: [{type: mongoose.Schema.Types.ObjectId, ref: 'Comment'}]
     });
     mongoose.model('User', UserSchema);

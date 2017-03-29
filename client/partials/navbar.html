@@ -1,8 +1,8 @@
 <div class="ui blue menu" ng-controller='userController'>
-    <a class="header item" href="">Home</a>
+    <a class="header item" href="#!/dash">Home</a>
     <a class="item" href="#!/user/{{user.id}}">Profile</a>
     <a class="item" href="">Topics</a>
     <a class="item" href="#!/add_question">Add Question</a>
     <a class="floated right item" ng-click='logOut()'>Log Out</a>
-    <span class="floated right item">Signed in as <a href="">{{user.name}}</a></span>
+    <span class="floated right item">Signed in as <a href="#!/user/{{user.id}}">{{user.name}}</a></span>
 </div>

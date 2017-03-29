@@ -14,12 +14,15 @@ app.controller('userController', function(userFactory, $scope, $routeParams) {
     };
     $scope.getUser();
 
-    function getProfileUser() {
-        userFactory.getProfileUser(function(user) {
-            $scope.profileUser = user;
+    function getProfileUser(id) {
+        userFactory.getProfileUser(id, function(user) {
+            if (user) {
+                console.log(user);
+                $scope.profileUser = user;
+            }
         });
-    };
+    }
     if ($routeParams.userid) {
-        getProfileUser();
+        getProfileUser($routeParams.userid);
     }
 });
