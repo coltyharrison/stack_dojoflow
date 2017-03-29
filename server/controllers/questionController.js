@@ -9,7 +9,7 @@ module.exports = (function(){
       User.findOne({id:req.user.id}, function(err,user) {
         var newQuestion = new Question({
           title: req.body.title,
-          desription: req.body.description,
+          description: req.body.description,
           topic: req.body.topic,
           posted_at: new Date(),
           _user: user._id,
