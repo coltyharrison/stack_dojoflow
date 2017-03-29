@@ -72,6 +72,10 @@ module.exports = function(app) {
       questionController.createQuestion(req, res);
     });
 
+    app.post('/createComment', function(req, res) {
+      questionController.createComment(req, res)
+    });
+
     app.get('/success', function(req, res, next) {
         res.redirect('/#!/dash');
     });

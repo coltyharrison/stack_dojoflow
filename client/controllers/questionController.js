@@ -1,5 +1,6 @@
 app.controller('questionController', function($scope, $routeParams, questionFactory) {
 
+
   var index = function() {
     // if the user selects a question
     if($routeParams.id) {
@@ -20,9 +21,17 @@ app.controller('questionController', function($scope, $routeParams, questionFact
   }
   index()
 
-  $scope.create = function() {
-    questionFactory.create($scope.newQuestion)
+  $scope.createQuestion = function() {
+    questionFactory.createQuestion($scope.newQuestion)
     $scope.newQuestion = ''
+    index()
+  }
+
+
+  // needs the question id passed to this function
+  $scope.createComment = function(question_id) {
+    question.Factory.createComment($scope.newComment, question_id)
+    $scope.newComment = ''
     index()
   }
 })

@@ -8,13 +8,24 @@ app.factory('questionFactory', function($http,$location,$route){
       })
     }
 
-    factory.create = function(question){
+    factory.createQuestion = function(question){
       $http.post('/createQuestion', question).then(function(output){
         if(output.data){
           $location.url('/dash');
         }
       })
     }
+
+    factory.createComment = function(comment, question_id) {
+      var comment_obj = {
+        comment: comment,
+        question_id: question_id
+      }
+      $http.post('/createComment',comment_obj)
+    }
+
+
+
 
     return factory;
 })
