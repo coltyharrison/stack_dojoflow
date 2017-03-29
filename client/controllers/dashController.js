@@ -14,8 +14,8 @@ app.controller('dashController', function($scope, questionFactory){
 
     setDash();
 
-    // $scope.add_task = function(){
-    //     taskFactory.create($scope.todo);
-    //     $scope.todo = {}
-    // }
+    $scope.add_question = function(){
+        questionFactory.create($scope.question);
+        $scope.question = {}
+    }
 })

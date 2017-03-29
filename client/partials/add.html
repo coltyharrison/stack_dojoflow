@@ -1,0 +1,30 @@
+<div class="ui form segment">
+  <span class="floated right item"><a href="#!/dash">Go Back</a></span>
+  <h2 class="ui center aligned icon header">
+  <i class="comments outline icon"></i>
+  Add Question
+  </h2>
+  <hr>
+  <form ng-submit="">
+    <div class="two fields">
+      <div class="field">
+        <label>Question</label>
+        <input placeholder="Question Title" type="text" ng-model="question.title">
+      </div>
+      <div class="field">
+        <label>Description</label>
+        <textarea ng-model="question.question" placeholder="Question Description" rows="4" cols="80"></textarea>
+      </div>
+    </div>
+    <br>
+    <select ng-model="question.topic">
+      <option selected disabled value="">Select Language</option>
+      <option value="python">Python</option>
+      <option value="ruby">Ruby</option>
+      <option value="iOS">iOS</option>
+      <option value="MEAN">MEAN</option>
+    </select>
+    <br>
+    <button class="btn btn-success btn- m"type="submit" name="button">Create</button>
+  </form>
+</div>
