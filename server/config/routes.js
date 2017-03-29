@@ -4,7 +4,8 @@ var passport = require('passport'),
     path = require('path'),
     mongoose = require('mongoose'),
     User = mongoose.model('User'),
-    GitHubStrategy = require('passport-github').Strategy;
+    GitHubStrategy = require('passport-github').Strategy,
+    users = require('./../controllers/userController.js'),
     questionsession = require('./../controllers/dashController.js');
 
 passport.serializeUser(function(user, done) {
@@ -67,5 +68,9 @@ module.exports = function(app) {
 
     app.get('/error', function(req, res, next) {
         res.redirect('/');
+    });
+
+    app.get('/getUser', function(req, res) {
+        users.getUser(req, res);
     });
 };
