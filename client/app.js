@@ -8,6 +8,10 @@ app.config(function($routeProvider) {
         templateUrl: 'partials/dashboard.html',
         controller: 'questionController'
     })
+    .when('/question/:id', {
+        templateUrl: 'partials/question.html',
+        controller: 'questionController'
+    })
     .when('/add_question',{
         templateUrl: 'partials/add.html',
         controller: 'questionController'

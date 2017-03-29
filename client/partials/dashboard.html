@@ -15,7 +15,7 @@
               </thead>
               <tbody>
                 <tr ng-repeat='question in questions'>
-                    <td><a href="#!/show/{{question._id}}">{{question.title}}</a></td>
+                    <td><a href="#!/question/{{question._id}}">{{question.title}}</a></td>
                     <td>{{question.topic}}</td>
                     <td>{{question._user.name}}</td>
                     <td>{{question.posted_at | date:'medium'}}</td>

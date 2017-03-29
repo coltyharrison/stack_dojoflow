@@ -17,11 +17,8 @@ app.factory('questionFactory', function($http,$location,$route){
     }
 
     factory.createComment = function(comment, question_id) {
-      var comment_obj = {
-        comment: comment,
-        question_id: question_id
-      }
-      $http.post('/createComment',comment_obj)
+      comment.question_id = question_id
+      $http.post('/createComment',comment)
     }
 
 

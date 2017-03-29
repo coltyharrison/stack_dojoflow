@@ -4,10 +4,9 @@ app.controller('questionController', function($scope, $routeParams, questionFact
   var index = function() {
     // if the user selects a question
     if($routeParams.id) {
-      //
-      qestionFactory.getQuestions(function(data) {
-        $scope.qestions = data
-        for (var key in $scope.qestions) {
+      questionFactory.getQuestions(function(data) {
+        $scope.questions = data
+        for (var key in $scope.questions) {
           if ($scope.questions[key]['_id'] == $routeParams.id) {
             $scope.question = $scope.questions[key]
           }
@@ -30,7 +29,7 @@ app.controller('questionController', function($scope, $routeParams, questionFact
 
   // needs the question id passed to this function
   $scope.createComment = function(question_id) {
-    question.Factory.createComment($scope.newComment, question_id)
+    questionFactory.createComment($scope.newComment, question_id)
     $scope.newComment = ''
     index()
   }
