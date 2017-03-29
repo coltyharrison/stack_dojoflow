@@ -40,7 +40,6 @@ module.exports = function(app) {
                     if (!user) {
                         var newuser = new User(req.user._json);
                         req.session.user = newuser;
-                        req.session.save();
                         newuser.save(function(err) {
                             if (!err) {
                                 console.log(req.session);
@@ -49,7 +48,6 @@ module.exports = function(app) {
                         });
                     } else {
                         req.session.user = user;
-                        res.session.save();
                         console.log(req.session);
                         return next();
                     }
