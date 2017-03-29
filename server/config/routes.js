@@ -5,6 +5,7 @@ var passport = require('passport'),
     mongoose = require('mongoose'),
     User = mongoose.model('User'),
     GitHubStrategy = require('passport-github').Strategy;
+// uestionsession = require('./../controllers/question.js');
 
 passport.serializeUser(function(user, done) {
     done(null, user);
@@ -20,19 +21,6 @@ passport.use(new GitHubStrategy({
     callbackURL: 'http://localhost:8000/auth/github/callback'
 }, function(accessToken, refreshToken, profile, done) {
     process.nextTick(function() {
-        User.findOne({
-            id: profile._json.id
-        }, function(err, user) {
-            if (!err) {
-                if (!user) {
-                    var newuser = new User(profile._json);
-                    newuser.save(function(err) {
-                        if (!err) {
-                        }
-                    });
-                }
-            }
-        });
         return done(null, profile);
     });
 }));
@@ -43,18 +31,50 @@ module.exports = function(app) {
         res.sendFile(path.join(__dirname, './../../client/index.html'));
     });
 
+    function ensureAuthenticated(req, res, next) {
+        if (req.isAuthenticated()) {
+            User.findOne({
+                id: req.user._json.id
+            }, function(err, user) {
+                if (!err) {
+                    if (!user) {
+                        var newuser = new User(req.user._json);
+                        req.session.user = newuser;
+                        req.session.save();
+                        newuser.save(function(err) {
+                            if (!err) {
+                                console.log(req.session);
+                                return next();
+                            }
+                        });
+                    } else {
+                        req.session.user = user;
+                        res.session.save();
+                        console.log(req.session);
+                        return next();
+                    }
+                }
+            });
+            return next();
+        }
+        // denied. redirect to login
+        res.redirect('/');
+    }
+
     app.get('/auth/github', passport.authenticate('github'));
 
     app.get('/auth/github/callback', passport.authenticate('github', {
-        successRedirect: '#!/dash',
-        failureRedirect: '/'
+        successRedirect: '/success',
+        failureRedirect: '/error'
     }));
+    app.post('/create', function(req, res) {
 
-    // app.get('/success', function(req, res, next) {
-    //     res.json(true);
-    // });
-    //
-    // app.get('/error', function(req, res, next) {
-    //     res.json(false);
-    // });
+    });
+    app.get('/success', ensureAuthenticated, function(req, res, next) {
+        res.redirect('/#!/dash');
+    });
+
+    app.get('/error', function(req, res, next) {
+        res.redirect('/');
+    });
 };
