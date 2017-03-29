@@ -7,6 +7,10 @@ app.config(function($routeProvider) {
     .when('/dash', {
         templateUrl: 'partials/dashboard.html',
         controller: 'dashController'
+    })
+    .when('/add_question',{
+        templateUrl: 'partials/add.html'
+    })
     .when('/topic/:id', {
         templateUrl: 'partials/topic.html',
     })

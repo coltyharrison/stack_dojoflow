@@ -12,8 +12,8 @@ app.factory('questionFactory', function(){
         callback(questions);
     }
 
-    factory.create = function(task){
-        $http.post('/create', task);
+    factory.create = function(question){
+        $http.post('/create', question);
     }
 
     return factory;

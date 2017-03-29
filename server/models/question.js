@@ -2,6 +2,7 @@ var mongoose = require('mongoose'),
     QuestionSchema = mongoose.Schema({
         title: String,
         question: String,
+        topic: String,
         _user: {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'User'

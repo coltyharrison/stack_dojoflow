@@ -5,6 +5,7 @@ var passport = require('passport'),
     mongoose = require('mongoose'),
     User = mongoose.model('User'),
     GitHubStrategy = require('passport-github').Strategy;
+    // uestionsession = require('./../controllers/question.js');
 
 passport.serializeUser(function(user, done) {
     done(null, user);
@@ -46,13 +47,15 @@ module.exports = function(app) {
     app.get('/auth/github', passport.authenticate('github'));
 
     app.get('/auth/github/callback', passport.authenticate('github', {
-        successRedirect: '/success',
+        successRedirect: '/#!/dash',
         failureRedirect: '/error'
     }));
+    app.post('/create', function(req, res){
 
-    app.get('/success', function(req, res, next) {
-        res.json('Successfully logged in.');
-    });
+    })
+    // app.get('/success', function(req, res, next) {
+    //     res.json('Successfully logged in.');
+    // });
 
     app.get('/error', function(req, res, next) {
         res.json("Error logging in.");
