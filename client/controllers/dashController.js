@@ -22,16 +22,13 @@ app.controller('dashController', function($scope, questionFactory, $routeParams)
 
     $scope.create = function(){
       $scope.errors = []
-      if(!$scope.question || !$scope.question.title){
+      if (!$scope.question || !$scope.question.title){
         $scope.errors.push('Please put the title')
-      }
-      else if($scope.question.title.length < 6){
+      } else if ($scope.question.title.length < 6){
         $scope.errors.push('Your title is too short!')
-      }
-      else if($scope.question.description.length < 10){
+      } else if ($scope.question.description.length < 10){
         $scope.errors.push('Please tell me more than that!')
-      }
-      else{
+      } else {
         questionFactory.create($scope.question)
       }
     }

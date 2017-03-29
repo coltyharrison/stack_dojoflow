@@ -8,6 +8,9 @@ var passport = require('passport'),
     users = require('./../controllers/userController.js'),
     questionsession = require('./../controllers/dashController.js');
 
+    // Backend question controller, to handle question and question comments
+    questionController = require('./../controllers/questionController.js')
+
 passport.serializeUser(function(user, done) {
     done(null, user);
 });
@@ -53,12 +56,20 @@ module.exports = function(app) {
         failureRedirect: '/error'
     }));
 
-    app.get('/getquestions', function(req, res){
-      questionsession.getquestions(req, res);
+    // app.get('/getquestions', function(req, res){
+    //   questionsession.getquestions(req, res);
+    // });
+    //
+    // app.post('/createQuestion', function(req, res){
+    //   questionsession.create(req, res);
+    // });
+
+    app.get('/getQuestions', function(req, res){
+      questionController.getQuestions(req, res);
     });
 
-    app.post('/create', function(req, res){
-      questionsession.create(req, res);
+    app.post('/createQuestion', function(req, res){
+      questionController.createQuestion(req, res);
     });
 
     app.get('/success', function(req, res, next) {
