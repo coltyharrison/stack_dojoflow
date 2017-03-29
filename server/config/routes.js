@@ -5,7 +5,7 @@ var passport = require('passport'),
     mongoose = require('mongoose'),
     User = mongoose.model('User'),
     GitHubStrategy = require('passport-github').Strategy;
-// uestionsession = require('./../controllers/question.js');
+    questionsession = require('./../controllers/dashController.js');
 
 passport.serializeUser(function(user, done) {
     done(null, user);
@@ -65,9 +65,15 @@ module.exports = function(app) {
         successRedirect: '/success',
         failureRedirect: '/error'
     }));
-    app.post('/create', function(req, res) {
 
+    app.get('/getquestions', function(req, res){
+      questionsession.getquestions(req, res)
     });
+
+    app.post('/create', function(req, res){
+      questionsession.create(req, res)
+    });
+
     app.get('/success', ensureAuthenticated, function(req, res, next) {
         res.redirect('/#!/dash');
     });

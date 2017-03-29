@@ -5,7 +5,7 @@
   Add Question
   </h2>
   <hr>
-  <form ng-submit="">
+  <form ng-submit="create()">
     <div class="two fields">
       <div class="field">
         <label>Question</label>
@@ -13,7 +13,7 @@
       </div>
       <div class="field">
         <label>Description</label>
-        <textarea ng-model="question.question" placeholder="Question Description" rows="4" cols="80"></textarea>
+        <textarea ng-model="question.description" placeholder="Question Description" rows="4" cols="80"></textarea>
       </div>
     </div>
     <br>
