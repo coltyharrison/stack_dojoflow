@@ -1,16 +1,16 @@
 <div id='dash-wrapper'>
-    <nav>
-        <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Profile</a></li>
-            <li><a href="#">Topics</a></li>
-            <li><a href="#!/add_question">Add Question</a></li>
-        </ul>
-    </nav>
+  <div class="ui blue menu">
+    <a class="header item" href="">Home</a>
+    <a class="item" href="">Profile</a>
+    <a class="item" href="">Topics</a>
+    <a class="item" href="#!/add_question">Add Question</a>
+    <span class="floated right item">Signed in as <a href="">User Name!</a></span>
+  </div>
     <div id='dash-body'>
         <div id='recent_q'>
             <h3>Recent Questions</h3>
-            <table>
+            <table class="ui inverted table">
+              <thead>
                 <tr>
                     <th>Question</th>
                     <th>Topic</th>
@@ -18,6 +18,8 @@
                     <th>Posted</th>
                     <th>Upvotes</th>
                 </tr>
+              </thead>
+              <tbody>
                 <tr ng-repeat='question in questions'>
                     <td><a href="#!/show/{{question._id}}">{{question.title}}</a></td>
                     <td>{{question.topic}}</td>
@@ -25,18 +27,36 @@
                     <td>{{question.posted_at | date:'medium'}}</td>
                     <td>{{question.upvotes}}</td>
                 </tr>
+              </tbody>
             </table>
         </div>
+        <hr>
         <div id='pop_ninja'>
-            <h3>Popular Ninjas</h3>
-            <ul>
-                <li>ninja1 - stars</li>
-                <li>ninja2 - stars</li>
-            </ul>
+          <h3>Popular Ninjas</h3>
+          <table class="ui celled table">
+            <thead>
+              <tr>
+                <th>Ninja name</th>
+                <th>Stars</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><div class="ui ribbon label">Jace</div><i class="paw icon"></i></td> 
+                <td>1000stars</td>
+              </tr>
+              <tr>
+                <td>Taylor</td>
+                <td>570stars</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
+        <hr>
         <div id='pop_q'>
             <h3>Recent Questions</h3>
-            <table>
+            <table class="ui green table">
+              <thead>
                 <tr>
                     <th>Question</th>
                     <th>Topic</th>
@@ -44,21 +64,49 @@
                     <th>Posted</th>
                     <th>Upvotes</th>
                 </tr>
-                <tr>
-                    <td>Question 1</td>
-                    <td>topic</td>
-                    <td>Ninja name</td>
-                    <td>Post Date</td>
-                    <td># of votes</td>
+              </thead>
+              <tbody>
+                <tr ng-repeat='question in questions | orderBy : "-posted_at"'>
+                  <td>question#1</td>
+                  <td>{{question.topic}}</td>
+                  <td>{{question.description}}</td>
+                  <td>{{question.posted_at | date:'medium'}}</td>
+                  <td>{{question.upvotes}}</td>
                 </tr>
+              </tbody>
             </table>
         </div>
+        <hr>
         <div id='pop_topic'>
             <h3>Popular Ninjas</h3>
-            <ul>
-                <li>MEAN - 100 questions</li>
-                <li>Python - 22 questions</li>
-            </ul>
+            <table class="ui table">
+              <tbody>
+                <tr>
+                  <td class="collapsing">
+                    <i class="folder icon"></i> MEAN
+                  </td>
+                  <td> 100 questions</td>
+                </tr>
+                <tr>
+                  <td class="collapsing">
+                    <i class="folder icon"></i> Python
+                  </td>
+                  <td> 79 questions</td>
+                </tr>
+                <tr>
+                  <td class="collapsing">
+                    <i class="folder icon"></i> iOS
+                  </td>
+                  <td> 52 questions</td>
+                </tr>
+                <tr>
+                  <td class="collapsing">
+                    <i class="folder icon"></i> Ruby
+                  </td>
+                  <td> 26 questions</td>
+                </tr>
+              </tbody>
+            </table>
         </div>
     </div>
 </div>
