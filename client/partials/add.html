@@ -9,15 +9,15 @@
     <div class="two fields">
       <div class="field">
         <label>Question</label>
-        <input placeholder="Question Title" type="text" ng-model="question.title">
+        <input placeholder="Question Title" type="text" ng-model="newQuestion.title" required>
       </div>
       <div class="field">
         <label>Description</label>
-        <textarea ng-model="question.description" placeholder="Question Description" rows="4" cols="80"></textarea>
+        <textarea ng-model="newQuestion.description" placeholder="Question Description" rows="4" cols="80" required></textarea>
       </div>
     </div>
     <br>
-    <select ng-model="question.topic">
+    <select ng-model="newQuestion.topic" required>
       <option selected disabled value="">Select Language</option>
       <option value="python">Python</option>
       <option value="ruby">Ruby</option>
