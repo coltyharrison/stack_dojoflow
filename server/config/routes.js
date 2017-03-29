@@ -11,8 +11,23 @@ passport.serializeUser(function(user, done) {
     done(null, user);
 });
 
-passport.deserializeUser(function(obj, done) {
-    done(null, obj);
+passport.deserializeUser(function(user, done) {
+    User.findOne({
+        id: user.id
+    }, function(err, foundUser) {
+        if (!err) {
+            if (!foundUser) {
+                var newuser = new User(user._json);
+                newuser.save(function(err) {
+                    if (!err) {
+                        return done(null, newuser);
+                    }
+                });
+            } else {
+                return done(null, foundUser);
+            }
+        }
+    });
 });
 
 passport.use(new GitHubStrategy({
@@ -30,35 +45,6 @@ module.exports = function(app) {
     app.get('/', function(req, res, next) {
         res.sendFile(path.join(__dirname, './../../client/index.html'));
     });
-
-    function ensureAuthenticated(req, res, next) {
-        if (req.isAuthenticated()) {
-            User.findOne({
-                id: req.user._json.id
-            }, function(err, user) {
-                if (!err) {
-                    if (!user) {
-                        var newuser = new User(req.user._json);
-                        req.session.user = newuser;
-                        newuser.save(function(err) {
-                            if (!err) {
-                                console.log(req.session);
-                                return next();
-                            }
-                        });
-                    } else {
-                        req.session.user = user;
-                        console.log(req.session);
-                        return next();
-                    }
-                }
-            });
-            return next();
-        }
-        // denied. redirect to login
-        res.redirect('/');
-    }
-
     app.get('/auth/github', passport.authenticate('github'));
 
     app.get('/auth/github/callback', passport.authenticate('github', {
@@ -67,14 +53,15 @@ module.exports = function(app) {
     }));
 
     app.get('/getquestions', function(req, res){
-      questionsession.getquestions(req, res)
+      questionsession.getquestions(req, res);
     });
 
     app.post('/create', function(req, res){
-      questionsession.create(req, res)
+      questionsession.create(req, res);
     });
 
-    app.get('/success', ensureAuthenticated, function(req, res, next) {
+    app.get('/success', function(req, res, next) {
+        console.log(req.session.passport);
         res.redirect('/#!/dash');
     });
 

@@ -13,7 +13,6 @@ app.use(session({
     resave: false,
     saveUninitialized: false
 }));
-
 require(path.join(__dirname, './server/config/mongoose.js'));
 require(path.join(__dirname, './server/config/routes.js'))(app);
 
