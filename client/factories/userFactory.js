@@ -1,6 +1,7 @@
 app.factory('userFactory', function($http, $location) {
     var factory = {};
     var user = {};
+    var profileUser = {};
     factory.getUser = function(cb) {
         if (Object.keys(user).length > 0) {
             cb(user);

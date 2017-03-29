@@ -1,5 +1,6 @@
-app.controller('userController', function(userFactory, $scope) {
+app.controller('userController', function(userFactory, $scope, $routeParams) {
     $scope.user = {};
+    $scope.profileUser = {};
     $scope.getUser = function() {
         userFactory.getUser(function(user) {
             if (user) {
@@ -8,8 +9,17 @@ app.controller('userController', function(userFactory, $scope) {
         });
     };
     $scope.logOut = function() {
-        userFactory.logOut()
+        userFactory.logOut();
         $scope.user = {};
-    }
+    };
     $scope.getUser();
+
+    function getProfileUser() {
+        userFactory.getProfileUser(function(user) {
+            $scope.profileUser = user;
+        });
+    };
+    if ($routeParams.userid) {
+        getProfileUser();
+    }
 });

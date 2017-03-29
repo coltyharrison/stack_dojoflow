@@ -15,7 +15,7 @@ app.config(function($routeProvider) {
     .when('/topic/:id', {
         templateUrl: 'partials/topic.html',
     })
-    .when('/user/:id', {
+    .when('/user/:userid', {
         templateUrl: 'partials/user.html',
         controller: 'userController'
     })
