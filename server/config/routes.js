@@ -46,15 +46,15 @@ module.exports = function(app) {
     app.get('/auth/github', passport.authenticate('github'));
 
     app.get('/auth/github/callback', passport.authenticate('github', {
-        successRedirect: '/success',
-        failureRedirect: '/error'
+        successRedirect: '#!/dash',
+        failureRedirect: '/'
     }));
 
-    app.get('/success', function(req, res, next) {
-        res.json('Successfully logged in.');
-    });
-
-    app.get('/error', function(req, res, next) {
-        res.json("Error logging in.");
-    });
+    // app.get('/success', function(req, res, next) {
+    //     res.json(true);
+    // });
+    //
+    // app.get('/error', function(req, res, next) {
+    //     res.json(false);
+    // });
 };
