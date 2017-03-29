@@ -18,4 +18,10 @@ app.config(function($routeProvider) {
     .otherwise({
         redirectTo: '/'
     });
+})
+.directive('navBar', function() {
+    return {
+        restrict: 'E',
+        templateUrl: '/partials/navbar.html'
+    };
 });

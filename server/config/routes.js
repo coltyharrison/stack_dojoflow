@@ -62,7 +62,6 @@ module.exports = function(app) {
     });
 
     app.get('/success', function(req, res, next) {
-        console.log(req.session.passport);
         res.redirect('/#!/dash');
     });
 

@@ -5,5 +5,5 @@ app.controller('userController', function(userFactory, $scope) {
             $scope.user = user;
         });
     };
-    getUser();
+    $scope.getUser();
 });
