@@ -6,7 +6,7 @@ app.config(function($routeProvider) {
     })
     .when('/dash', {
         templateUrl: 'partials/dashboard.html',
-        controller: 'dashController'
+        controller: 'questionController'
     })
     .when('/add_question',{
         templateUrl: 'partials/add.html',
