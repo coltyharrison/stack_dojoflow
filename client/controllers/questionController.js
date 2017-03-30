@@ -56,25 +56,24 @@ app.controller('questionController', function($scope, $routeParams, questionFact
             index();
         });
     };
+    // question upvote
+    $scope.qUpvote = function(question_id) {
+        questionFactory.qUvote(question_id)
+        index()
+    }
+    // question downvote
+    $scope.qDownvote = function(question_id) {
+        questionFactory.qDownvote(question_id)
+        index()
+    }
+    // answer upvote
+    $scope.aUpvote = function(answer_id) {
+        questionFactory.aUpvote(answer_id)
+        index()
+    }
+    // answer downvote
+    $scope.aDownvote = function(answer_id) {
+        questionFactory.aDownvote(answer_id)
+        index()
+    }
 });
-  // question upvote
-  $scope.qUpvote = function(question_id) {
-    questionFactory.qUvote(question_id)
-    index()
-  }
-  // question downvote
-  $scope.qDownvote = function(question_id) {
-    questionFactory.qDownvote(question_id)
-    index()
-  }
-  // answer upvote
-  $scope.aUpvote = function(answer_id) {
-    questionFactory.aUpvote(answer_id)
-    index()
-  }
-  // answer downvote
-  $scope.aDownvote = function(answer_id) {
-    questionFactory.aDownvote(answer_id)
-    index()
-  }
-})
