@@ -50,9 +50,12 @@ app.controller('questionController', function($scope, $routeParams, questionFact
   }
 
   $scope.createAnswerComment = function(answer_id) {
-    questionFactory.createAnswerComment($scope.newAnswerComment, answer_id)
-    $scope.newAnswerComment = ""
-    index()
+      console.log(answer_id)
+      console.log($scope)
+      console.log($scope.newAnswerComment.comment)
+    // questionFactory.createAnswerComment($scope.newAnswerComment, answer_id)
+    // $scope.newAnswerComment = ""
+    // index()
   }
 
   // question upvote
