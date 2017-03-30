@@ -28,6 +28,8 @@ module.exports = (function(){
     getQuestions: function(req,res){
       Question.find({})
       .populate('_user')
+      .populate('comments')
+      .populate('answers')
       .exec(function(err, questions) {
         res.json(questions)
       })
