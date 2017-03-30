@@ -6,12 +6,37 @@
         <h5>{{question.description}}</h5>
         <p>{{question.topic}} Upvotes: {{question.upvotes}}, Downvotes {{question.downvotes}}</p>
     </div>
-    <div class="ui divider"></div>
-    <!-- <div id='the_answers' ng-repeat='answer in answers'>
+    <div class="ui horizontal divider"> Question Comments </div>
+    <div id='the_answers' ng-repeat='comment in question.comments'>
+        <p>{{comment.comment}}<p>
+        <p>{{comment._user.name}} at {{comment.createdAt}}</p>
+        <div class="ui divider"></div>
+    </div>
+    <div class="ui form" id='question_comments'>
+        <div class="field ui inverted segment">
+            <form ng-submit='createComment(question._id)'>
+                <label>Leave a Comment</label>
+                <textarea name="question_comment" id="question_comment_input" ng-model="newComment.comment" rows='1'></textarea>
+                <button class="ui inverted orange button">Post Comment</button>
+            </form>
+        </div>
+    </div>
+    <div class="ui horizontal divider"> The Answers </div>
+    <div id='the_answers' ng-repeat='answer in question.answers'>
         <p>Upvotes: {{answer.upvotes}}, Downvotes {{answer.downvotes}}</p>
         <p>{{answer.answer}}<p>
-        <p>{{answer._user.name}} and answer date</p>
-    </div> -->
+        <p>{{answer._user.name}} at {{answer.createdAt}}</p>
+        <div class="ui form" id='answer_comments'>
+            <div class="field ui inverted segment">
+                <form ng-submit='createAnswerComment(answer._id)'>
+                    <label>Comment on this Answer</label>
+                    <textarea name="answer_comment" id="answer_comment_input" ng-model="newAnswerComment.comment" rows='1'></textarea>
+                    <button class="ui inverted blue button">Post Comment</button>
+                </form>
+            </div>
+        </div>
+        <div class="ui divider"></div>
+    </div>
     <div class="ui form" id='the_answer'>
         <div class="field ui inverted segment">
             <form ng-submit='createAnswer(question._id)'>

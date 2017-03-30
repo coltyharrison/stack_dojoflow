@@ -30,6 +30,10 @@ module.exports = (function(){
       Question.find({})
       .populate('_user')
       .populate('comments')
+      .populate({
+          path: 'comments',
+          populate: { path: '_user'}
+      })
       .populate('answers')
       .populate({
         path: 'answers',
