@@ -1,4 +1,4 @@
-app.controller('questionController', function($scope, $routeParams, questionFactory) {
+app.controller('questionController', function($scope, $routeParams, questionFactory, $sce) {
     $scope.topic = '';
     $scope.sortTopic = 'title';
     $scope.newAnswerComment = {};
@@ -19,6 +19,7 @@ app.controller('questionController', function($scope, $routeParams, questionFact
                 for (var key in $scope.questions) {
                     if ($scope.questions[key]['_id'] == $routeParams.id) {
                         $scope.question = $scope.questions[key]
+                        $scope.trustedHtml = $sce.trustAsHtml($scope.question.description)
                     }
                 }
             })
