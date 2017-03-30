@@ -34,5 +34,30 @@ app.factory('questionFactory', function($http,$location,$route){
     }
 
 
+    factory.qUpvote = function(question_id){
+      vote_obj = {
+        question_id: question_id
+      }
+      $http.post('/qUpvote', vote_obj)
+    }
+    factory.qDownvote = function(question_id){
+      vote_obj = {
+        question_id: question_id
+      }
+      $http.post('/qDownvote', vote_obj)
+    }
+    factory.aUpvote = function(answer_id) {
+      vote_obj = {
+        answer_id: answer_id
+      }
+      $http.post('/aUpvote', vote_obj)
+    }
+    factory.aDownvote = function(answer_id) {
+      vote_obj = {
+        answer_id: answer_id
+      }
+      $http.post('/aDownvote', vote_obj)
+    }
+
     return factory;
 })
