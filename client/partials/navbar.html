@@ -1,8 +1,21 @@
-<div class="ui blue menu" ng-controller='userController'>
+<div class="ui menu" ng-controller='userController'>
     <a class="header item" href="#!/dash">Home</a>
     <a class="item" href="#!/user/{{user.id}}">Profile</a>
+    <div class="ui simple dropdown item">
+        <span class="text">Topic</span>
+        <i class="dropdown icon"></i>
+        <div class="menu">
+            <div class="item"><a href="#!/topic/python">Python</a></div>
+            <div class="item"><a href="#!/topic/htmlcss">HTML / CSS</a></div>
+            <div class="item"><a href="#!/topic/mean">MEAN</a></div>
+            <div class="item"><a href="#!/topic/ruby">Ruby</a></div>
+            <div class="item"><a href="#!/topic/ios">iOS</a></div>
+            <div class="item"><a href="#!/topic/csharp">C# / ASP.NET</a></div>
+            <div class="item"><a href="#!/topic/misc">Misc</a></div>
+        </div>
+    </div>
     <a class="item" href="">Topics</a>
     <a class="item" href="#!/add_question">Add Question</a>
+    <span class="floated right item">Signed in as&nbsp;<a href="#!/user/{{user.id}}"> {{user.name}}</a></span>
     <a class="floated right item" ng-click='logOut()'>Log Out</a>
-    <span class="floated right item">Signed in as <a href="#!/user/{{user.id}}">{{user.name}}</a></span>
 </div>

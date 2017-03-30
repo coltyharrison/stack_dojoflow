@@ -7,7 +7,7 @@
         <div class="ui center aligned segment" ng-if='questionsByTopic.length === 0'>
             <h3><em>No Questions...</em></h3>
         </div>
-        <div class="ng-if='questionsByTopic.length > 0'">
+        <div ng-if='questionsByTopic.length > 0'>
             <p>Sort By: <a href="" ng-click="sortTopic = posted_at">Recent</a> | <a href="" ng-click="sortTopic = upvotes">Popular</a></p>
             <table class="ui inverted small table">
                 <thead>
@@ -28,8 +28,5 @@
                 </tbody>
             </table>
         </div>
-    </div>
-    <div class="four wide column">
-        <able </div>
     </div>
 </div>

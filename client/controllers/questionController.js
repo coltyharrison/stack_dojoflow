@@ -1,6 +1,7 @@
 app.controller('questionController', function($scope, $routeParams, questionFactory) {
     $scope.topic = '';
     $scope.sortTopic = 'title';
+    $scope.
     var index = function() {
         // if the user selects a question
         if ($routeParams.id) {
@@ -35,24 +36,24 @@ app.controller('questionController', function($scope, $routeParams, questionFact
         index()
     }
 
-  // needs the question id passed to this function
-  $scope.createComment = function(question_id) {
-    questionFactory.createComment($scope.newComment, question_id)
-    $scope.newComment = ''
-    index()
-  }
+    // needs the question id passed to this function
+    $scope.createComment = function(question_id) {
+        questionFactory.createComment($scope.newComment, question_id)
+        $scope.newComment = ''
+        index()
+    }
 
-  // needs the question id passed to this function
-  $scope.createAnswer = function(question_id) {
-    questionFactory.createAnswer($scope.newAnswer, question_id)
-    $scope.newAnswer = ''
-    index()
-  }
+    // needs the question id passed to this function
+    $scope.createAnswer = function(question_id) {
+        questionFactory.createAnswer($scope.newAnswer, question_id)
+        $scope.newAnswer = ''
+        index()
+    }
 
-  $scope.createAnswerComment = function(answer_id) {
-    questionFactory.createAnswerComment($scope.newAnswerComment, answer_id)
-    $scope.newAnswerComment = ""
-    index()
-  }
+    $scope.createAnswerComment = function(answer_id) {
+        questionFactory.createAnswerComment($scope.newAnswerComment, answer_id)
+        $scope.newAnswerComment = ""
+        index()
+    }
 
 })
