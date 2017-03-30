@@ -2,6 +2,7 @@ var mongoose = require('mongoose')
 var Question = mongoose.model('Question')
 var User = mongoose.model('User')
 var Comment = mongoose.model('Comment')
+var Answer = mongoose.model('Answer')
 
 module.exports = (function(){
   return {
@@ -29,6 +30,11 @@ module.exports = (function(){
       Question.find({})
       .populate('_user')
       .populate('comments')
+      .populate('answers')
+      .populate({
+        path: 'answers',
+        populate: { path: '_user'}
+      })
       .populate({
         path: 'answers',
         populate: { path: 'comments'}
