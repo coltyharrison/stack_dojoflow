@@ -2,6 +2,15 @@ app.controller('questionController', function($scope, $routeParams, questionFact
     $scope.topic = '';
     $scope.sortTopic = 'title';
     $scope.newAnswerComment = {};
+    $scope.topicNames = {
+        'python': 'Python',
+        'htmlcss': 'HTML / CSS',
+        'mean': 'MEAN',
+        'ruby': 'Ruby',
+        'ios': 'iOS',
+        'csharp': 'C# / ASP.NET',
+        'misc': 'Misc'
+    }
     var index = function() {
         // if the user selects a question
         if ($routeParams.id) {
