@@ -82,10 +82,8 @@ app.controller('questionController', function($scope, $routeParams, questionFact
     var topicCount = function () {
         for (var i = 0; i < $scope.questions.length; i++) {
             for (var j = 0; j < $scope.topics.length; j++) {
-                console.log($scope.topics[j].topic, 'and', $scope.questions[i].topic)
                 if ($scope.topics[j].topic === $scope.questions[i].topic) {
                     $scope.topics[j].questions++
-                    console.log($scope.topics[j].questions++, 'was incremented')
                 }
             }
         }
