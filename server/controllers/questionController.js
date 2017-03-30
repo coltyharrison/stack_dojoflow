@@ -74,7 +74,7 @@ module.exports = (function(){
         Answer.findOne({_id:req.body.answer_id}, function(err,answer){
           var newAnswerComment = new Comment({
             comment: req.body.comment,
-            _user: user._id,
+            _user: user.name,
             _answer: answer._id,
           })
           newAnswerComment.save(function(err,data) {
