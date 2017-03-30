@@ -5,7 +5,7 @@ var g_ToastInterval; // Interval ID of our toast rendering function
 
 const ENABLE_TRACKER = true;
 const SOCKET_SERVER_URL = "http://localhost";
-const SOCKET_SERVER_PORT = ":8001";
+const SOCKET_SERVER_PORT = ":8000";
 
 $(document).ready(function (){
 	

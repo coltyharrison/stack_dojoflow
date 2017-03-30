@@ -17,10 +17,29 @@ require(path.join(__dirname, './server/config/mongoose.js'));
 require(path.join(__dirname, './server/config/routes.js'))(app);
 
 
-app.listen(port, function(err) {
+var server = app.listen(port, function(err) {
     if (err) {
         console.log(err);
     } else {
-        console.log('Listening on port 8000');
+        console.log('Listening on port ' + port);
     }
+});
+
+
+var io = require('socket.io').listen(server);
+var pubsub = require('./server/config/pubsub');
+
+io.sockets.on('connection', function (socket) {
+	console.log( "WE ARE USING SOCKETS!", socket.id );
+	
+	// console.log(io.sockets);
+	
+	
+	socket.on( "page_load", function ( data ) {
+		// console.log( data.user );
+		//console.log(socket.id / data.user.name + " navigated to page " + data.location.pathname + data.location.hash );
+		// socket.broadcast.emit('reader', data);
+		pubsub.publish( socket, data );
+	} );
+	
 });
