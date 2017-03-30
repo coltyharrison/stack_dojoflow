@@ -1,19 +1,35 @@
 <nav-bar></nav-bar>
 <!-- Topic Page -->
-<div>
-  <div>
-    <h1>{{ topic.name }}</h1>
-
-    <!-- Recent Questions (Probably limitTo), quanity below is set in scope -->
-    <!-- http://stackoverflow.com/questions/17643361/ngrepeat-limiting-number-of-displayed-results -->
-    <div ng-repeat="question in topic.questions | limitTo : quantity">
-      <a href="#!/show/{{question._id}}">{{ question.question }}</a>
+<h1>{{ topic }}</h1>
+<div class='ui grid'>
+    <div class='sixteen wide column'>
+        <h2>Recent Questions</h2>
+        <div class="ui center aligned segment" ng-if='questionsByTopic.length === 0'>
+            <h3><em>No Questions...</em></h3>
+        </div>
+        <div class="ng-if='questionsByTopic.length > 0'">
+            <p>Sort By: <a href="" ng-click="sortTopic = posted_at">Recent</a> | <a href="" ng-click="sortTopic = upvotes">Popular</a></p>
+            <table class="ui inverted small table">
+                <thead>
+                    <tr>
+                        <th>Question</th>
+                        <th>Ninja</th>
+                        <th>Topic</th>
+                        <th>Posted</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat='question in questionsByTopic | orderBy:sortTopic'>
+                        <td><a href="#!/show/{{question.id}}">{{question.title}}</a></td>
+                        <td>{{question._user.name}}</td>
+                        <td>{{question.topic}}</td>
+                        <td>{{question.posted_at | date:'medium'}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
-
-    <!-- List of Questions, ordered by popularity -->
-    <div ng-repeat="question in topic.questions | orderBy : 'ninja_stars' ">
-      <a href="#!/show/{{question._id}}">{{ question.question }}</a>
+    <div class="four wide column">
+        <able </div>
     </div>
-
-  </div>
 </div>

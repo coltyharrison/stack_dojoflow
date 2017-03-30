@@ -16,8 +16,9 @@ app.config(function($routeProvider) {
         templateUrl: 'partials/add.html',
         controller: 'questionController'
     })
-    .when('/topic/:id', {
+    .when('/topic/:topic', {
         templateUrl: 'partials/topic.html',
+        controller: 'questionController'
     })
     .when('/user/:userid', {
         templateUrl: 'partials/user.html',
