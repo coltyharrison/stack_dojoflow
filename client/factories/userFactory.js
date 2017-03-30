@@ -9,6 +9,7 @@ app.factory('userFactory', function($http, $location) {
             .then(function(output) {
                 if (output.data) {
                     user = output.data;
+					g_User = user;
                     cb(user);
                 }
                 else {
