@@ -29,7 +29,10 @@ module.exports = (function(){
       Question.find({})
       .populate('_user')
       .populate('comments')
-      .populate('answers')
+      .populate({
+        path: 'answers',
+        populate: { path: 'comments'}
+      })
       .exec(function(err, questions) {
         res.json(questions)
       })
