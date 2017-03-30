@@ -23,7 +23,9 @@ app.factory('questionFactory', function($http,$location,$route){
       $http.post('/createAnswer', answer)
     }
     factory.createAnswerComment = function(comment, answer_id) {
+        console.log(comment)
       comment.answer_id = answer_id
+      console.log(comment)
       $http.post('/createAnswerComment', comment)
     }
 
