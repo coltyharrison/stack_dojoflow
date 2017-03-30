@@ -20,7 +20,7 @@ app.factory('questionFactory', function($http,$location,$route){
     }
     factory.createAnswer = function(answer, question_id) {
       answer.question_id = question_id
-      $http.post('/createAnswer',answer)
+      $http.post('/createAnswer', answer)
     }
     factory.createAnswerComment = function(comment, answer_id) {
       comment.answer_id = answer_id

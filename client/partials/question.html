@@ -1,1 +1,24 @@
 <nav-bar></nav-bar>
+<div id='question_page'>
+    <div id='the_question'>
+        <h4>{{question._user.name}} {{question.posted_at | date:dateFormat }}</h4>
+        <h2>{{question.title}}</h2>
+        <h5>{{question.description}}</h5>
+        <p>{{question.topic}} Upvotes: {{question.upvotes}}, Downvotes {{question.downvotes}}</p>
+    </div>
+    <div class="ui divider"></div>
+    <!-- <div id='the_answers' ng-repeat='answer in answers'>
+        <p>Upvotes: {{answer.upvotes}}, Downvotes {{answer.downvotes}}</p>
+        <p>{{answer.answer}}<p>
+        <p>{{answer._user.name}} and answer date</p>
+    </div> -->
+    <div class="ui form" id='the_answer'>
+        <div class="field ui inverted segment">
+            <form ng-submit='createAnswer(question._id)'>
+                <label>Answer</label>
+                <textarea name="answer" id="answer_input" ng-model="newAnswer.answer" rows='1'></textarea>
+                <button class="ui inverted teal button">Post Answer</button>
+            </form>
+        </div>
+    </div>
+</div>
