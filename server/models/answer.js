@@ -1,6 +1,7 @@
 var mongoose = require('mongoose'),
     AnswerSchema = mongoose.Schema({
         answer: String,
+        topic: String,
         _user: {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'User'

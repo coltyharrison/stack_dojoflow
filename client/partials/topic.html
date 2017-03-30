@@ -1,34 +1,36 @@
-<nav-bar></nav-bar>
-<!-- Topic Page -->
-<h1 class="ui block header">
- {{ topicNames[topic] }}
-</h1>
-<div class='ui grid'>
-    <div class='sixteen wide column'>
-        <h2>Recent Questions</h2>
-        <div class="ui center aligned segment" ng-if='questionsByTopic.length === 0'>
-            <h3><em>No Questions...</em></h3>
-        </div>
-        <div ng-if='questionsByTopic.length > 0'>
-            <p>Sort By: <a href="" ng-click="sortTopic = posted_at">Recent</a> | <a href="" ng-click="sortTopic = upvotes">Popular</a></p>
-            <table class="ui inverted small table">
-                <thead>
-                    <tr>
-                        <th>Question</th>
-                        <th>Ninja</th>
-                        <th>Topic</th>
-                        <th>Posted</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr ng-repeat='question in questionsByTopic | orderBy:sortTopic'>
-                        <td><a href="#!/show/{{question.id}}">{{question.title}}</a></td>
-                        <td>{{question._user.name}}</td>
-                        <td>{{question.topic}}</td>
-                        <td>{{question.posted_at | date:'medium'}}</td>
-                    </tr>
-                </tbody>
-            </table>
+<div class="ui container">
+    <nav-bar></nav-bar>
+    <!-- Topic Page -->
+    <h1 class="ui block header">
+     {{ topicNames[topic] }}
+    </h1>
+    <div class='ui grid'>
+        <div class='sixteen wide column'>
+            <h2>Recent Questions</h2>
+            <div class="ui center aligned segment" ng-if='questionsByTopic.length === 0'>
+                <h3><em>No Questions...</em></h3>
+            </div>
+            <div ng-if='questionsByTopic.length > 0'>
+                <p>Sort By: <a href="" ng-click="sortTopic = posted_at">Recent</a> | <a href="" ng-click="sortTopic = upvotes">Popular</a></p>
+                <table class="ui inverted small table">
+                    <thead>
+                        <tr>
+                            <th>Question</th>
+                            <th>Ninja</th>
+                            <th>Topic</th>
+                            <th>Posted</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat='question in questionsByTopic | orderBy:sortTopic'>
+                            <td><a href="#!/show/{{question.id}}">{{question.title}}</a></td>
+                            <td>{{question._user.name}}</td>
+                            <td>{{question.topic}}</td>
+                            <td>{{question.posted_at | date:'medium'}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>

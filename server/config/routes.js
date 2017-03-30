@@ -8,28 +8,15 @@ var passport = require('passport'),
     users = require('./../controllers/userController.js'),
 
     // Backend question controller, to handle question and question comments
-    questionController = require('./../controllers/questionController.js')
+    questionController = require('./../controllers/questionController.js');
 
 passport.serializeUser(function(user, done) {
-    done(null, user);
+    done(null, user.id);
 });
 
-passport.deserializeUser(function(user, done) {
-    User.findOne({
-        id: user.id
-    }, function(err, foundUser) {
-        if (!err) {
-            if (!foundUser) {
-                var newuser = new User(user._json);
-                newuser.save(function(err) {
-                    if (!err) {
-                        return done(null, newuser);
-                    }
-                });
-            } else {
-                return done(null, foundUser);
-            }
-        }
+passport.deserializeUser(function(id, done) {
+    User.findOne({id: id}, function(err, user) {
+        done(err, user);
     });
 });
 
@@ -38,15 +25,32 @@ passport.use(new GitHubStrategy({
     clientSecret: GITHUB_CLIENT_SECRET,
     callbackURL: 'http://localhost:8000/auth/github/callback'
 }, function(accessToken, refreshToken, profile, done) {
-    process.nextTick(function() {
-        return done(null, profile);
+    User.update({id: profile._json.id}, {$set: profile._json},
+    function(err, foundUser) {
+        if (!err) {
+            if (foundUser.n === 0) {
+                var newuser = new User(profile._json);
+                if (profile.name === '') {
+                    profile.name = profile.login;
+                }
+                newuser.save(function(err) {
+                    if (!err) {
+                        return done(null, newuser);
+                    }
+                });
+            } else {
+                User.findOne({id: profile.id}, function(err, user) {
+                    return done(null, user);
+                });
+            }
+        }
     });
 }));
 module.exports = function(app) {
     app.use(passport.initialize());
     app.use(passport.session());
-    app.get('/', function(req, res, next) {
-        res.sendFile(path.join(__dirname, './../../client/index.html'));
+    app.get('/', function(req, res) {
+        users.displayAuth(req, res);
     });
     app.get('/auth/github', passport.authenticate('github'));
 
@@ -96,6 +100,7 @@ module.exports = function(app) {
     });
 
     app.get('/error', function(req, res, next) {
+        console.log('error')
         res.redirect('/');
     });
 

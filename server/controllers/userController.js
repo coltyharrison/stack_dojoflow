@@ -3,9 +3,12 @@ var User = mongoose.model('User');
 
 module.exports = (function() {
     return {
+        displayAuth: function(req, res) {
+            res.sendFile(path.join(__dirname, './../../client/index.html'));
+        },
         getUser: function(req, res) {
             if (req.user) {
-                res.json(req.session.passport.user._json);
+                res.json(req.user);
             } else {
                 res.json(false);
             }

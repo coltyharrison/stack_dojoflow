@@ -14,9 +14,12 @@ app.factory('questionFactory', function($http,$location,$route){
         }
       })
     }
-    factory.createComment = function(comment, question_id) {
+    factory.createComment = function(comment, question_id, cb) {
       comment.question_id = question_id
       $http.post('/createComment',comment)
+      .then(function() {
+         cb();
+      });
     }
     factory.createAnswer = function(answer, question_id, cb) {
       answer.question_id = question_id
@@ -32,7 +35,6 @@ app.factory('questionFactory', function($http,$location,$route){
          cb();
       });
     }
-
 
     factory.qUpvote = function(question_id){
       vote_obj = {

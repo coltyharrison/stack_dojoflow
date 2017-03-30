@@ -48,9 +48,10 @@ app.controller('questionController', function($scope, $routeParams, questionFact
 
     // needs the question id passed to this function
     $scope.createComment = function(question_id) {
-        questionFactory.createComment($scope.newComment, question_id)
-        $scope.newComment = ''
-        index()
+        questionFactory.createComment($scope.newComment, question_id, function() {
+            $scope.newComment = '';
+            index();
+        })
     }
 
     // needs the question id passed to this function

@@ -1,74 +1,76 @@
-<nav-bar></nav-bar>
-<br>
-<div class='ui grid'>
-    <div class="four wide column">
-        <div class="ui card">
-            <div class="image">
-                <img src="{{profileUser.avatar_url}}">
-            </div>
-            <div class="content">
-                <div class="header">{{profileUser.name}}</div>
-                <div class="meta">
-                    <img height="20" src='images/github_logo.png'><a href="{{profileUser.url}}">{{profileUser.login}}</a>
+<div class="ui container">
+    <nav-bar></nav-bar>
+    <br>
+    <div class='ui grid'>
+        <div class="four wide column">
+            <div class="ui card">
+                <div class="image">
+                    <img src="{{profileUser.avatar_url}}">
                 </div>
-                <div class="description">
-                    {{profileUser.bio}}
+                <div class="content">
+                    <div class="header">{{profileUser.name}}</div>
+                    <div class="meta">
+                        <img height="20" src='images/github_logo.png'><a href="{{profileUser.url}}">{{profileUser.login}}</a>
+                    </div>
+                    <div class="description">
+                        {{profileUser.bio}}
+                    </div>
+                </div>
+                <div class="extra content">
+                    <span class="right floated">
+                    {{profileUser.location}}
+                  </span>
+                    <span>
+                    <img height='20' src="images/ninjastar.png"> 23
+                  </span>
                 </div>
             </div>
-            <div class="extra content">
-                <span class="right floated">
-                {{profileUser.location}}
-              </span>
-                <span>
-                <img height='20' src="images/ninjastar.png"> 23
-              </span>
+        </div>
+        <div class="twelve wide column">
+            <h2>Questions Asked</h2>
+            <div class="ui center aligned segment" ng-if='profileUser.questions.length === 0'>
+              <h3><em>No Questions...</em></h3>
             </div>
+            <table class="ui inverted small table" ng-if='profileUser.questions.length > 0'>
+              <thead>
+                <tr>
+                    <th>Question</th>
+                    <th>Topic</th>
+                    <th>Posted</th>
+                    <th>Upvotes</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat='question in profileUser.questions'>
+                    <td><a href="#!/show/{{question._id}}">{{question.title}}</a></td>
+                    <td>{{question.topic}}</td>
+                    <td>{{question.posted_at | date:'medium'}}</td>
+                    <td>{{question.upvotes.length}}</td>
+                </tr>
+              </tbody>
+            </table>
+            <h2>Answers Given</h2>
+            <div class="ui center aligned segment" ng-if='profileUser.answers.length === 0'>
+              <h3><em>No Answers...</em></h3>
+            </div>
+            <table class="ui small table" ng-if='profileUser.answers.length > 0'>
+              <thead>
+                <tr>
+                    <th>Answer</th>
+                    <th>Topic</th>
+                    <th>Posted</th>
+                    <th>Upvotes</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat='answer in profileUser.answers'>
+                    <td><a href="#!/show/{{question._id}}">{{answer.answer}}</a></td>
+                    <td>{{answer.topic}}</td>
+                    <td>{{answer.createdAt | date:'medium'}}</td>
+                    <td>{{answer.upvotes.length}}</td>
+                </tr>
+              </tbody>
+            </table>
         </div>
-    </div>
-    <div class="twelve wide column">
-        <h2>Questions Asked</h2>
-        <div class="ui center aligned segment" ng-if='profileUser.questions.length === 0'>
-          <h3><em>No Questions...</em></h3>
-        </div>
-        <table class="ui inverted small table" ng-if='profileUser.questions.length > 0'>
-          <thead>
-            <tr>
-                <th>Question</th>
-                <th>Topic</th>
-                <th>Posted</th>
-                <th>Upvotes</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr ng-repeat='question in profileUser.questions'>
-                <td><a href="#!/show/{{question._id}}">{{question.title}}</a></td>
-                <td>{{question.topic}}</td>
-                <td>{{question.posted_at | date:'medium'}}</td>
-                <td>{{question.upvotes}}</td>
-            </tr>
-          </tbody>
-        </table>
-        <h2>Answers Given</h2>
-        <div class="ui center aligned segment" ng-if='profileUser.answers.length === 0'>
-          <h3><em>No Answers...</em></h3>
-        </div>
-        <table class="ui small table" ng-if='profileUser.answers.length > 0'>
-          <thead>
-            <tr>
-                <th>Question</th>
-                <th>Topic</th>
-                <th>Posted</th>
-                <th>Upvotes</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr ng-repeat='question in profileUser.questions'>
-                <td><a href="#!/show/{{question._id}}">{{question.title}}</a></td>
-                <td>{{question.topic}}</td>
-                <td>{{question.posted_at | date:'medium'}}</td>
-                <td>{{question.upvotes}}</td>
-            </tr>
-          </tbody>
-        </table>
     </div>
 </div>

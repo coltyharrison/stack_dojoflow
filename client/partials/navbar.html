@@ -1,3 +1,4 @@
+
 <div class="ui menu" ng-controller='userController'>
     <a class="header item" href="#!/dash">Home</a>
     <a class="item" href="#!/user/{{user.id}}">Profile</a>
@@ -15,6 +16,8 @@
         </div>
     </div>
     <a class="item" href="#!/add_question">Add Question</a>
-    <span class="floated right item">Signed in as&nbsp;<a href="#!/user/{{user.id}}"> {{user.name}}</a></span>
+    <span class="floated right item">Signed in as&nbsp;
+        <a href="#!/user/{{user.id}}" ng-if='user.name.length > 0'> {{user.name}}</a>
+    </span>
     <a class="floated right item" ng-click='logOut()'>Log Out</a>
 </div>
