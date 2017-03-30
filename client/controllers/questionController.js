@@ -69,7 +69,7 @@ app.controller('questionController', function($scope, $routeParams, questionFact
     };
     // question upvote
     $scope.qUpvote = function(question_id) {
-        questionFactory.qUvote(question_id)
+        questionFactory.qUpvote(question_id)
         index()
     }
     // question downvote

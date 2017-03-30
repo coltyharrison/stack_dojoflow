@@ -128,6 +128,7 @@ module.exports = (function(){
             question.upvotes.push(user_id)
           }
         }
+        console.log(question)
         question.save()
         res.json(question)
       })
@@ -139,10 +140,11 @@ module.exports = (function(){
           question.downvotes.push(user_id)
         }
         for(var i = 0; i < question.downvotes.length; i++) {
-          if (questions.downvotes[i] != user_id) {
+          if (question.downvotes[i] != user_id) {
             question.downvotes.push(user_id)
           }
         }
+        console.log(question)
         question.save()
         res.json(question)
       })
