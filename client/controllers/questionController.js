@@ -11,6 +11,44 @@ app.controller('questionController', function($scope, $routeParams, questionFact
         'csharp': 'C# / ASP.NET',
         'misc': 'Misc'
     }
+    $scope.topics = [
+        {
+                topic:'python',
+                name: 'Python',
+                questions: 0,
+        },
+        {
+            topic:'htmlcss',
+            name: 'HTML / CSS',
+            questions: 0,
+        },
+        {
+            topic:'mean',
+            name: 'MEAN',
+            questions: 0,
+        },
+        {
+            topic:'ruby',
+            name: 'Ruby',
+            questions: 0,
+        },
+        {
+            topic:'ios',
+            name: 'iOS',
+            questions: 0,
+        },
+        {
+            topic:'csharp',
+            name: 'C# / ASP.NET',
+            questions: 0,
+        },
+        {
+            topic:'misc',
+            name: 'Misc',
+            questions: 0,
+        }
+    ]
+
     var index = function() {
         // if the user selects a question
         if ($routeParams.id) {
@@ -35,10 +73,23 @@ app.controller('questionController', function($scope, $routeParams, questionFact
                         }
                     }
                 }
+                topicCount();
             });
         }
     };
     index();
+
+    var topicCount = function () {
+        for (var i = 0; i < $scope.questions.length; i++) {
+            for (var j = 0; j < $scope.topics.length; j++) {
+                console.log($scope.topics[j].topic, 'and', $scope.questions[i].topic)
+                if ($scope.topics[j].topic === $scope.questions[i].topic) {
+                    $scope.topics[j].questions++
+                    console.log($scope.topics[j].questions++, 'was incremented')
+                }
+            }
+        }
+    }
 
     $scope.createQuestion = function() {
         questionFactory.createQuestion($scope.newQuestion)
