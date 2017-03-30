@@ -83,6 +83,8 @@ module.exports = (function(){
             } else {
               user.comments.push(newAnswerComment._id)
               answer.comments.push(newAnswerComment._id)
+              console.log(newAnswerComment)
+              console.log(answer.comments)
               user.save()
               answer.save()
               res.json(data)

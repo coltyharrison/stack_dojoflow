@@ -1,6 +1,5 @@
 app.controller('questionController', function($scope, $routeParams, questionFactory) {
 
-
   var index = function() {
     // if the user selects a question
     if($routeParams.id) {
@@ -42,9 +41,12 @@ app.controller('questionController', function($scope, $routeParams, questionFact
   }
 
   $scope.createAnswerComment = function(answer_id) {
-    questionFactory.createAnswerComment($scope.newAnswerComment, answer_id)
-    $scope.newAnswerComment = ""
-    index()
+      console.log(answer_id)
+      console.log($scope)
+      console.log($scope.newAnswerComment.comment)
+    // questionFactory.createAnswerComment($scope.newAnswerComment, answer_id)
+    // $scope.newAnswerComment = ""
+    // index()
   }
 
 })
