@@ -16,7 +16,6 @@ app.controller('questionController', function($scope, $routeParams, questionFact
             questionFactory.getQuestions(function(data) {
                 $scope.questions = data;
                 if ($routeParams.topic) {
-                    console.log($scope.questions);
                     $scope.topic = $routeParams.topic;
                     $scope.questionsByTopic = [];
                     for (var i = 0; i < $scope.questions.length; i++) {
@@ -36,12 +35,24 @@ app.controller('questionController', function($scope, $routeParams, questionFact
         index()
     }
 
+  // needs the question id passed to this function
+  $scope.createComment = function(question_id) {
+    questionFactory.createComment($scope.newComment, question_id)
+    $scope.newComment = ''
+    index()
+  }
 
-    // needs the question id passed to this function
-    $scope.createComment = function(question_id) {
-        questionFactory.createComment($scope.newComment, question_id)
-        $scope.newComment = ''
-        index()
-    }
+  // needs the question id passed to this function
+  $scope.createAnswer = function(question_id) {
+    questionFactory.createAnswer($scope.newAnswer, question_id)
+    $scope.newAnswer = ''
+    index()
+  }
 
-});
+  $scope.createAnswerComment = function(answer_id) {
+    questionFactory.createAnswerComment($scope.newAnswerComment, answer_id)
+    $scope.newAnswerComment = ""
+    index()
+  }
+
+})

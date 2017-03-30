@@ -9,5 +9,5 @@ var mongoose = require('mongoose'),
         _question: {type: mongoose.Schema.Types.ObjectId, ref: 'Question'},
         upvotes: {type: Number, default: 0},
         downvotes: {type: Number, default: 0}
-    });
+    }, {timestamps: true});
 mongoose.model('Comment', CommentSchema);

@@ -2,6 +2,7 @@ var mongoose = require('mongoose')
 var Question = mongoose.model('Question')
 var User = mongoose.model('User')
 var Comment = mongoose.model('Comment')
+var Answer = mongoose.model('Answer')
 
 module.exports = (function(){
   return {
@@ -28,6 +29,20 @@ module.exports = (function(){
     getQuestions: function(req,res){
       Question.find({})
       .populate('_user')
+      .populate('comments')
+      .populate({
+          path: 'comments',
+          populate: { path: '_user'}
+      })
+      .populate('answers')
+      .populate({
+        path: 'answers',
+        populate: { path: '_user'}
+      })
+      .populate({
+        path: 'answers',
+        populate: { path: 'comments'}
+      })
       .exec(function(err, questions) {
         res.json(questions)
       })
@@ -46,6 +61,50 @@ module.exports = (function(){
             } else {
               user.comments.push(newComment._id)
               question.comments.push(newComment._id)
+              user.save()
+              question.save()
+              res.json(data)
+            }
+          })
+        })
+      })
+    },
+    createAnswerComment: function(req, res) {
+      User.findOne({id:req.user.id}, function(err,user) {
+        Answer.findOne({_id:req.body.answer_id}, function(err,answer){
+          var newAnswerComment = new Comment({
+            comment: req.body.comment,
+            _user: user._id,
+            _answer: answer._id,
+          })
+          newAnswerComment.save(function(err,data) {
+            if(err) {
+              console.log(err)
+            } else {
+              user.comments.push(newAnswerComment._id)
+              answer.comments.push(newAnswerComment._id)
+              user.save()
+              answer.save()
+              res.json(data)
+            }
+          })
+        })
+      })
+    },
+    createAnswer: function(req, res) {
+      User.findOne({id:req.user.id}, function(err,user) {
+        Question.findOne({_id:req.body.question_id}, function(err,question) {
+          var newAnswer = new Answer({
+            answer: req.body.answer,
+            _user: user._id,
+            _question: question._id,
+          })
+          newAnswer.save(function(err,data){
+            if (err) {
+              console.log(err)
+            } else {
+              user.answers.push(newAnswer._id)
+              question.answers.push(newAnswer._id)
               user.save()
               question.save()
               res.json(data)

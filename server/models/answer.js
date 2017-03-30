@@ -12,5 +12,5 @@ var mongoose = require('mongoose'),
         }],
         upvotes: {type: Number, default: 0},
         downvotes: {type: Number, default: 0}
-    });
+    }, {timestamps:true});
 mongoose.model('Answer', AnswerSchema);
