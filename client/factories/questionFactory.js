@@ -18,15 +18,19 @@ app.factory('questionFactory', function($http,$location,$route){
       comment.question_id = question_id
       $http.post('/createComment',comment)
     }
-    factory.createAnswer = function(answer, question_id) {
+    factory.createAnswer = function(answer, question_id, cb) {
       answer.question_id = question_id
       $http.post('/createAnswer', answer)
+      .then(function() {
+          cb();
+      })
     }
-    factory.createAnswerComment = function(comment, answer_id) {
-        console.log(comment)
+    factory.createAnswerComment = function(comment, answer_id, cb) {
       comment.answer_id = answer_id
-      console.log(comment)
       $http.post('/createAnswerComment', comment)
+      .then(function() {
+         cb();
+      });
     }
 
 

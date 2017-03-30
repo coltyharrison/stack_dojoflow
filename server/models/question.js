@@ -17,6 +17,6 @@ var mongoose = require('mongoose'),
             ref: 'Comment'
         }],
         upvotes: [],
-        downvotes: []]
+        downvotes: [],
     });
 mongoose.model('Question', QuestionSchema);

@@ -4,7 +4,7 @@
         <h4>{{question._user.name}} {{question.posted_at | date:dateFormat }}</h4>
         <h2>{{question.title}}</h2>
         <h5>{{question.description}}</h5>
-        <p>{{question.topic}} Upvotes: {{question.upvotes}}, Downvotes {{question.downvotes}}</p>
+        <p>{{question.topic}} Upvotes: {{question.upvotes.length}}, Downvotes {{question.downvotes.length}}</p>
     </div>
     <div class="ui horizontal divider"> Question Comments </div>
     <div id='the_answers' ng-repeat='comment in question.comments'>
@@ -23,13 +23,14 @@
     </div>
     <div class="ui horizontal divider"> The Answers </div>
     <div id='the_answers' ng-repeat='answer in question.answers'>
-        <p>Upvotes: {{answer.upvotes}}, Downvotes {{answer.downvotes}}</p>
+        <p>Upvotes: {{answer.upvotes.length}}, Downvotes {{answer.downvotes.length}}</p>
         <p>{{answer.answer}}<p>
         <p>{{answer._user.name}} at {{answer.createdAt}}</p>
-        <p>{{answer._id}}</p>
+        <div class="ui segment" ng-repeat='comment in answer.comments'>
+            {{comment.comment}} - {{comment._user.name}} - {{comment.createdAt}}
+        </div>
         <div class="ui form" id='answer_comments'>
             <div class="field ui inverted segment">
-                {{answer}}
                 <form >
                     <label>Comment on this Answer</label>
                     <textarea id="answer_comment_input" ng-model="newAnswerComment.comment" rows='1'></textarea>
