@@ -55,4 +55,9 @@ app.controller('questionController', function($scope, $routeParams, questionFact
     index()
   }
 
+  // question upvote
+  // question downvote
+  // answer upvote
+  // answer downvote
+
 })
