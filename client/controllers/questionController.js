@@ -1,7 +1,6 @@
 app.controller('questionController', function($scope, $routeParams, questionFactory) {
     $scope.topic = '';
     $scope.sortTopic = 'title';
-    $scope.
     var index = function() {
         // if the user selects a question
         if ($routeParams.id) {
@@ -27,7 +26,7 @@ app.controller('questionController', function($scope, $routeParams, questionFact
                 }
             });
         }
-    }
+    };
     index()
 
     $scope.createQuestion = function() {
@@ -49,11 +48,9 @@ app.controller('questionController', function($scope, $routeParams, questionFact
         $scope.newAnswer = ''
         index()
     }
-
     $scope.createAnswerComment = function(answer_id) {
         questionFactory.createAnswerComment($scope.newAnswerComment, answer_id)
         $scope.newAnswerComment = ""
         index()
     }
-
-})
+});

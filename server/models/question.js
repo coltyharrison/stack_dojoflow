@@ -16,7 +16,7 @@ var mongoose = require('mongoose'),
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Comment'
         }],
-        upvotes: {type: Number, default: 0},
-        downvotes: {type: Number, default: 0}
+        upvotes: [],
+        downvotes: []]
     });
 mongoose.model('Question', QuestionSchema);
