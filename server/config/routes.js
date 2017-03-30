@@ -75,6 +75,22 @@ module.exports = function(app) {
       questionController.createAnswerComment(req, res)
     })
 
+    app.post('/qUpvote', function(req, res) {
+      questionController.qUpvote(req, res);
+    });
+
+    app.post('/qDownvote', function(req, res) {
+      questionController.qDownvote(req, res);
+    });
+
+    app.post('/aUpvote', function(req, res) {
+      questionController.aUpvote(req, res);
+    });
+
+    app.post('/aDownvote', function(req, res) {
+      questionController.aDownvote(req, res);
+    });
+
     app.get('/success', function(req, res, next) {
         res.redirect('/#!/dash');
     });

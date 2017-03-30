@@ -112,6 +112,66 @@ module.exports = (function(){
           })
         })
       })
+    },
+    qUpvote: function(req, res) {
+      user_id = req.user.id
+      Question.findOne({_id:req.body.question_id}, function(err, question) {
+        if (question.upvotes.length == 0) {
+          question.upvotes.push(user_id)
+        }
+        for(var i = 0; i < question.upvotes.length; i++) {
+          if (question.upvotes[i] != user_id) {
+            question.upvotes.push(user_id)
+          }
+        }
+        question.save()
+        res.json(question)
+      })
+    },
+    qDownvote: function(req, res) {
+      user_id = req.user.id
+      Question.findOne({_id:req.body.question_id}, function(err,question) {
+        if (question.downvotes.length == 0) {
+          question.downvotes.push(user_id)
+        }
+        for(var i = 0; i < question.downvotes.length; i++) {
+          if (questions.downvotes[i] != user_id) {
+            question.downvotes.push(user_id)
+          }
+        }
+        question.save()
+        res.json(question)
+      })
+    },
+    aUpvote: function(req, res) {
+      user_id = req.user.id
+      Answer.findOne({_id:req.body.answer_id}, function(err,answer) {
+        if (answer.upvotes.length == 0) {
+          answer.upvotes.push(user_id)
+        }
+        for(var i = 0; i < answer.upvotes.length; i++) {
+          if (answer.upvotes[i] != user_id) {
+            answer.upvotes.push(user_id)
+          }
+        }
+        answer.save()
+        res.json(answer)
+      })
+    },
+    aDownvote: function(req, res) {
+      user_id = req.user.id
+      Answer.findOne({_id:req.body.answer_id}, function(err,answer) {
+        if (answer.downvotes.length == 0) {
+          answer.downvotes.push(user_id)
+        }
+        for(var i = 0; i < answer.downvotes.length; i++) {
+          if (answer.downvotes[i] != user_id) {
+            answer.downvotes.push(user_id)
+          }
+        }
+        answer.save()
+        res.json(answer)
+      })
     }
   }
 })()
