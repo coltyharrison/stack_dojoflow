@@ -19,14 +19,16 @@
                             <th>Ninja</th>
                             <th>Topic</th>
                             <th>Posted</th>
+                            <th>Upvotes</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr ng-repeat='question in questionsByTopic | orderBy: sortTopic'>
                             <td><div class="tabletext"><a href="#!/question/{{question._id}}">{{question.title}}</a></div></td>
-                            <td>{{question._user.name}}</td>
+                            <td><a href='#!/user/{{question._user.id}}'>{{question._user.name}}</a></td>
                             <td>{{question.topic}}</td>
                             <td>{{question.posted_at | date:'medium'}}</td>
+                            <td>{{question.upvotes.length}}</td>
                         </tr>
                     </tbody>
                 </table>

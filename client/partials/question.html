@@ -16,7 +16,7 @@
             display:none;
         }
         #the_answers h2{
-            margin-top:40px;
+            margin-top:20px;
         }
         #user_answer {
             margin-top:20px;
@@ -27,6 +27,9 @@
         }
         #the_real_answer img {
             max-width:530px;
+        }
+        #no_answer {
+            margin-top:20px;
         }
     </style>
     <script type="text/javascript">
@@ -57,13 +60,13 @@
             <div class='ui grid'>
                 <div class='three wide column'>
                     <div class="ui segment" id='votebox'>
-                        <button class="ui small green labeled icon button">
-                            <i class="chevron up icon" ng-click='qUpvote(question._id)' ></i>
+                        <button class="ui small green labeled icon button" ng-click='qUpvote(question._id)'>
+                            <i class="chevron up icon" ></i>
                             {{question.upvotes.length}}
                         </button>
                         <br><br>
-                        <button class="ui small red labeled icon button">
-                            <i class="chevron down icon" ng-click='qDownvote(question._id)'></i>
+                        <button class="ui small red labeled icon button" ng-click='qDownvote(question._id)'>
+                            <i class="chevron down icon"></i>
                             {{question.downvotes.length}}
                         </button>
                     </div>
@@ -96,7 +99,7 @@
     </div>
     <div id='the_answers'>
         <h2 ng-if="question.answers.length > 0"> There are {{question.answers.length}} answers.</h2>
-        <div class="ui center aligned segment" ng-if="question.answers.length === 0">
+        <div id='no_answer' class="ui center aligned segment" ng-if="question.answers.length === 0">
           <h3><em>No Answers Yet...</em></h3>
         </div>
         <div class="ui grid" ng-repeat='answer in question.answers | orderBy: "-createdAt"'>
@@ -118,12 +121,12 @@
                     <div class='ui grid'>
                         <div class="three wide column">
                             <div class="ui segment" id='votebox'>
-                                <button class="ui mini green labeled icon button">
-                                    <i class="chevron up icon" ng-click='aUpvote(answer._id)' ></i>
+                                <button class="ui mini green labeled icon button" ng-click='aUpvote(answer._id)'>
+                                    <i class="chevron up icon"></i>
                                     {{answer.upvotes.length}}
                                 </button></br></br>
-                                <button class="ui mini red labeled icon button">
-                                    <i class="chevron down icon" ng-click='aDownvote(answer._id)'></i>
+                                <button class="ui mini red labeled icon button" ng-click='aDownvote(answer._id)'>
+                                    <i class="chevron down icon"></i>
                                     {{answer.downvotes.length}}
                                 </button>
                             </div>
