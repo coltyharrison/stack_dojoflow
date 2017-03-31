@@ -19,6 +19,7 @@
     "angular": "^1.6.3",
     "angular-route": "^1.6.3",
     "semantic": "semantic-ui#^2.2.10",
-    "angular-ui-tinymce": "latest"
+    "angular-ui-tinymce": "latest",
+    "bootstrap-markdown": "^2.10.0"
   }
 }

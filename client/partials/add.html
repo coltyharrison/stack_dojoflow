@@ -3,8 +3,12 @@
     border: 1px dotted red
   }
 </style>*/ -->
-
 <div class="ui container">
+    <script>
+    $(document).ready(function() {
+      $("#question_text").markdown({autofocus:false,savable:true})
+    });
+    </script>
     <nav-bar></nav-bar>
     <div class="ui segment center aligned">
         <img height="110" src="images/stackdojoflow.png">
@@ -19,7 +23,7 @@
             <input class="field" placeholder="What's you programming question? Be specific." type="text" ng-model="newQuestion.title" required>
           </div>
           <div class="field">
-            <textarea ui-tinymce ng-model="newQuestion.description" placeholder="Question Description" rows="4" cols="80" required></textarea>
+            <textarea id='question_text' ng-model="newQuestion.description" placeholder="Question Description" rows="4" cols="80" required></textarea>
           </div>
           <br>
           <select ng-model="newQuestion.topic" required>
