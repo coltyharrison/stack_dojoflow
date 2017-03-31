@@ -24,6 +24,10 @@
         #user_answer {
             margin-top:20px;
         }
+        .textresponses {
+            white-space: normal;
+            word-break: break-all;
+        }
     </style>
     <script type="text/javascript">
       "use strict";
@@ -45,7 +49,7 @@
         <img height="110" src="images/stackdojoflow.png">
     </div>
     <div id='the_question'>
-        <h2>"{{question.title}}"</h2>
+        <h2 class="textresponses">"{{question.title}}"</h2>
         <div class='meta'>
             <span class='text'>Question asked by {{question._user.name}} on {{question.posted_at | date:dateFormat }}</span>
         </div>
@@ -68,7 +72,7 @@
                     <wiz-markdown content="question.description" class="code"></wiz-markdown>
                     <div id='question_comments'>
                         <div class="ui horizontal divider" ng-show="question.comments.length != 0"> Comments </div>
-                        <div class='comment' ng-repeat='comment in question.comments'>
+                        <div class='comment textresponses' ng-repeat='comment in question.comments'>
                             {{comment.comment}} ~ <a class='author'>{{comment._user.name}}</a>
                             @ <span class='metadata date'>{{comment.createdAt | date:dateFormat}}</span>
                             <div class="ui divider"></div>
@@ -91,7 +95,10 @@
         </div>
     </div>
     <div id='the_answers'>
-        <h2> There are {{question.answers.length}} Answers.</h2>
+        <h2 ng-if="question.answers.length > 0"> There are {{question.answers.length}} Answers.</h2>
+        <div class="ui center aligned segment" ng-if="question.answers.length === 0">
+          <h3><em>No Answers Yet...</em></h3>
+        </div>
         <div class="ui grid" ng-repeat='answer in question.answers | orderBy: "-createdAt"'>
             <div class="two wide column">
                 <div class="ui teal card">
@@ -121,7 +128,7 @@
                                 </button>
                             </div>
                         </div>
-                        <div class="thirteen wide column">
+                        <div class="thirteen wide column textresponses">
                             <wiz-markdown content="answer.answer" class="code"></wiz-markdown>
                             <div id='answer_comments'>
                                 <div class="ui horizontal divider" ng-show="answer.comments.length != 0"> Comments </div>
