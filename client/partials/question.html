@@ -18,6 +18,12 @@
         #answer_comment_text {
             display:none;
         }
+        #the_answers h2{
+            margin-top:40px;
+        }
+        #user_answer {
+            margin-top:20px;
+        }
     </style>
     <script type="text/javascript">
       "use strict";
@@ -30,6 +36,9 @@
           $(this).next().toggle('slow');
       });
     </script>
+    <div class="ui segment center aligned">
+        <img height="110" src="images/stackdojoflow.png">
+    </div>
     <div id='the_question'>
         <h2>{{question.title}}</h2>
         <div class='meta'>
@@ -42,7 +51,7 @@
                         <button class="ui small green labeled icon button">
                             <i class="chevron up icon" ng-click='qUpvote(question._id)' ></i>
                             {{question.upvotes.length}}
-                        </button></br></br>
+                        </button>
                         <button class="ui small red labeled icon button">
                             <i class="chevron down icon" ng-click='qDownvote(question._id)'></i>
                             {{question.downvotes.length}}
@@ -76,7 +85,6 @@
         </div>
     </div>
     <div id='the_answers'>
-      <br><br>
         <h2> There are {{question.answers.length}} Answers.</h2>
         <div class="ui grid" ng-repeat='answer in question.answers | orderBy: "-createdAt"'>
             <div class="two wide column">
@@ -85,7 +93,7 @@
                     <img src="{{answer._user.avatar_url}}">
                   </a>
                   <div class="content">
-                    <a href="#">{{answer._user.name}}</a>
+                    <a href="#!user/{{answer._user.id}}">{{answer._user.name}}</a>
                     <div class="meta">
                       <p><img src="images/ninjastar.png" height="20"> {{answer._user.ninja_stars}}</p>
                     </div>
