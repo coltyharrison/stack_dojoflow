@@ -19,7 +19,7 @@ module.exports = (function() {
                 })
                 newQuestion.save(function(err, data) {
                     if (err) {
-                        // console.log(err)
+                        console.log(err)
                     } else {
                         user.questions.push(newQuestion._id)
                         user.ninja_stars += 1;
@@ -47,7 +47,6 @@ module.exports = (function() {
                     }
                 })
                 .exec(function(err, questions) {
-                    console.log(questions)
                     res.json(questions)
                 })
         },
