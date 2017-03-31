@@ -13,9 +13,9 @@ app.controller('questionController', function($scope, $routeParams, questionFact
     }
     $scope.topics = [
         {
-                topic:'python',
-                name: 'Python',
-                questions: 0,
+            topic:'python',
+            name: 'Python',
+            questions: 0,
         },
         {
             topic:'htmlcss',
@@ -120,22 +120,26 @@ app.controller('questionController', function($scope, $routeParams, questionFact
     };
     // question upvote
     $scope.qUpvote = function(question_id) {
-        questionFactory.qUpvote(question_id)
-        index()
+        questionFactory.qUpvote(question_id, function() {
+            index();
+        });
     }
     // question downvote
     $scope.qDownvote = function(question_id) {
-        questionFactory.qDownvote(question_id)
-        index()
+        questionFactory.qDownvote(question_id, function() {
+            index();
+        });
     }
     // answer upvote
     $scope.aUpvote = function(answer_id) {
-        questionFactory.aUpvote(answer_id)
-        index()
+        questionFactory.aUpvote(answer_id, function() {
+            index();
+        });
     }
     // answer downvote
     $scope.aDownvote = function(answer_id) {
-        questionFactory.aDownvote(answer_id)
-        index()
+        questionFactory.aDownvote(answer_id, function() {
+            index();
+        });
     }
 });

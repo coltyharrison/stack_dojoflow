@@ -15,7 +15,9 @@ passport.serializeUser(function(user, done) {
 });
 
 passport.deserializeUser(function(id, done) {
-    User.findOne({id: id}, function(err, user) {
+    User.findOne({
+        id: id
+    }, function(err, user) {
         done(err, user);
     });
 });
@@ -25,26 +27,42 @@ passport.use(new GitHubStrategy({
     clientSecret: GITHUB_CLIENT_SECRET,
     callbackURL: 'http://localhost:8000/auth/github/callback'
 }, function(accessToken, refreshToken, profile, done) {
-    User.update({id: profile._json.id}, {$set: profile._json},
-    function(err, foundUser) {
-        if (!err) {
-            if (foundUser.n === 0) {
-                var newuser = new User(profile._json);
-                if (profile.name === '') {
-                    profile.name = profile.login;
-                }
-                newuser.save(function(err) {
-                    if (!err) {
-                        return done(null, newuser);
+    User.update({
+            id: profile._json.id
+        }, {
+            $set: profile._json
+        },
+        function(err, foundUser) {
+            if (!err) {
+                if (foundUser.n === 0) {
+                    var newuser = new User(profile._json);
+                    if (!newuser.name) {
+                        newuser.name = newuser.login;
                     }
-                });
-            } else {
-                User.findOne({id: profile.id}, function(err, user) {
-                    return done(null, user);
-                });
+                    newuser.save(function(err) {
+                        if (!err) {
+                            return done(null, newuser);
+                        }
+                    });
+                } else {
+                    User.findOne({
+                        id: profile.id
+                    }, function(err, user) {
+                        if (!user.name) {
+                            user.name = user.login;
+                            user.save(function(err) {
+                                if (!err) {
+                                    return done(null, user);
+                                }
+                            });
+                        } else {
+                            return done(null, user);
+                        }
+                    });
+                };
             }
-        }
-    });
+        });
+
 }));
 module.exports = function(app) {
     app.use(passport.initialize());
@@ -59,40 +77,41 @@ module.exports = function(app) {
         failureRedirect: '/error'
     }));
 
-    app.get('/getQuestions', function(req, res){
-      questionController.getQuestions(req, res);
+    app.get('/getQuestions', function(req, res) {
+        questionController.getQuestions(req, res);
     });
 
-    app.post('/createQuestion', function(req, res){
-      questionController.createQuestion(req, res);
+    app.post('/createQuestion', function(req, res) {
+        questionController.createQuestion(req, res);
     });
 
     app.post('/createComment', function(req, res) {
-      questionController.createComment(req, res)
+        questionController.createComment(req, res)
     });
 
     app.post('/createAnswer', function(req, res) {
-      questionController.createAnswer(req, res)
+        questionController.createAnswer(req, res)
     })
 
     app.post('/createAnswerComment', function(req, res) {
-      questionController.createAnswerComment(req, res)
+        questionController.createAnswerComment(req, res)
     })
 
     app.post('/qUpvote', function(req, res) {
-      questionController.qUpvote(req, res);
+        console.log('route!');
+        questionController.qUpvote(req, res);
     });
 
     app.post('/qDownvote', function(req, res) {
-      questionController.qDownvote(req, res);
+        questionController.qDownvote(req, res);
     });
 
     app.post('/aUpvote', function(req, res) {
-      questionController.aUpvote(req, res);
+        questionController.aUpvote(req, res);
     });
 
     app.post('/aDownvote', function(req, res) {
-      questionController.aDownvote(req, res);
+        questionController.aDownvote(req, res);
     });
 
     app.get('/success', function(req, res, next) {
@@ -100,7 +119,6 @@ module.exports = function(app) {
     });
 
     app.get('/error', function(req, res, next) {
-        console.log('error')
         res.redirect('/');
     });
 
