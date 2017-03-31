@@ -24,16 +24,18 @@
             <textarea id='question_text' ng-model="newQuestion.description" placeholder="Question Description" rows="4" cols="80" required></textarea>
           </div>
           <br>
-          <select ng-model="newQuestion.topic" class="ui fluid dropdown" required>
-            <option selected disabled value="">Topic</option>
-            <option value="python">Python</option>
-            <option value="htmlcss">HTML / CSS</option>
-            <option value="mean">MEAN</option>
-            <option value="ruby">Ruby</option>
-            <option value="ios">iOS</option>
-            <option value="csharp">C# / ASP.NET</option>
-            <option value="misc">Misc</option>
-          </select>
+          <div class="field">
+              <select ng-model="newQuestion.topic" class="ui fluid dropdown" required>
+                <option selected disabled value="">Topic</option>
+                <option value="python">Python</option>
+                <option value="htmlcss">HTML / CSS</option>
+                <option value="mean">MEAN</option>
+                <option value="ruby">Ruby</option>
+                <option value="ios">iOS</option>
+                <option value="csharp">C# / ASP.NET</option>
+                <option value="misc">Misc</option>
+              </select>
+          </div>
           <br>
           <button class="ui orange button"type="submit" name="button">Post Your Question</button>
         </form>
