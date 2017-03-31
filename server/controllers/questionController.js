@@ -33,12 +33,6 @@ module.exports = (function() {
             Question.find({})
                 .populate('_user')
                 .populate('comments')
-                .populate({
-                    path: 'comments',
-                    populate: {
-                        path: '_user'
-                    }
-                })
                 .populate('answers')
                 .populate({
                     path: 'answers',
@@ -53,6 +47,7 @@ module.exports = (function() {
                     }
                 })
                 .exec(function(err, questions) {
+                    console.log(questions)
                     res.json(questions)
                 })
         },
@@ -65,7 +60,7 @@ module.exports = (function() {
                 }, function(err, question) {
                     var newComment = new Comment({
                         comment: req.body.comment,
-                        _user: user._id,
+                        _user: user,
                         _question: question._id
                     })
                     newComment.save(function(err, data) {

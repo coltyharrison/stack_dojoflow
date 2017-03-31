@@ -4,6 +4,9 @@ app.factory('questionFactory', function($http,$location,$route){
     factory.getQuestions = function(callback){
       $http.get('/getquestions').then(function(output){
         questions = output.data;
+        for (var l =0; l<questions.length;l++) {
+            console.log(questions[l].comments);
+        }
         callback(questions);
       })
     }

@@ -1,52 +1,6 @@
 <div class='ui container'>
   <nav-bar></nav-bar>
     <div id='dash-body'>
-        <div id='recent_q'>
-            <h3>Recent Questions</h3>
-            <table class="ui inverted table">
-              <thead>
-                <tr>
-                    <th>Question</th>
-                    <th>Topic</th>
-                    <th>Ninja</th>
-                    <th>Posted</th>
-                    <th>Upvotes</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr ng-repeat='question in questions'>
-                    <td><a href="#!/question/{{question._id}}">{{question.title}}</a></td>
-                    <td><a href="#!/topic/{{question.topic}}">{{topicNames[question.topic]}}</a></td>
-                    <td>{{question._user.name}}</td>
-                    <td>{{question.posted_at | date:"MM/dd/yyyy 'at' h:mma"}}</td>
-                    <td>{{question.upvotes}}</td>
-                </tr>
-              </tbody>
-            </table>
-        </div>
-        <hr>
-        <div id='pop_ninja'>
-          <h3>Popular Ninjas</h3>
-          <table class="ui celled table">
-            <thead>
-              <tr>
-                <th>Ninja name</th>
-                <th>Stars</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><div class="ui ribbon label">Jace</div><i class="paw icon"></i></td> 
-                <td>1000stars</td>
-              </tr>
-              <tr>
-                <td>Taylor</td>
-                <td>570stars</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <hr>
         <div id='popular_questions'>
             <h3>Popular Questions</h3>
             <table class="ui teal celled table">
@@ -128,22 +82,16 @@
             <div class="content">
                 <div class="header">Popular Ninjas <i class='large spy icon'></i></div>
             </div>
-            <div class="content" ng-repeat='user in users'>
-                <img class = "right floated mini ui image" src="{{avatar_url}}">
-                <div class =
-            </div>    
-
-
-
-
-                <div class="ui small feed">
-                    <div class="event" ng-repeat ='topic in topics | orderBy: "-questions"'>
-                        <div class="content">
-                            <div class="summary">
-                                <a href='#!/topic/{{topic.topic}}'>{{topic.name}}</a> has <strong>{{topic.questions}} questions</strong>
-                            </div>
-                        </div>
-                    </div>
+            <div class="content" ng-repeat='user in users | orderBy: "-ninja_stars"'>
+                <img class="right floated mini ui image" src="{{user.avatar_url}}">
+                <div class="header">
+                    {{user.name}}
+                </div>
+                <div class="meta">
+                    CURRENT STACK
+                </div>
+                <div class="description">
+                    {{user.name}} currently has {{user.ninja_stars}} shurikens
                 </div>
             </div>
         </div>

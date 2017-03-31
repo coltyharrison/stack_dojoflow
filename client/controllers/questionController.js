@@ -91,14 +91,14 @@ app.controller('questionController', function($scope, $routeParams, questionFact
 
     $scope.createQuestion = function() {
         questionFactory.createQuestion($scope.newQuestion)
-        $scope.newQuestion = ''
+        $scope.newQuestion = {};
         index()
     }
 
     // needs the question id passed to this function
     $scope.createComment = function(question_id) {
         questionFactory.createComment($scope.newComment, question_id, function() {
-            $scope.newComment = '';
+            $scope.newComment = {};
             index();
         })
     }
@@ -106,7 +106,7 @@ app.controller('questionController', function($scope, $routeParams, questionFact
     // needs the question id passed to this function
     $scope.createAnswer = function(question_id) {
         questionFactory.createAnswer($scope.newAnswer, question_id, function() {
-            $scope.newAnswer = ''
+            $scope.newAnswer = {};
             index();
         })
     }

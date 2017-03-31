@@ -2,7 +2,7 @@
     <nav-bar></nav-bar>
     <style>
         * {
-            outline: 1px dotted red
+            /*outline: 1px dotted red*/
         }
         #votebox {
             display:inline-block;
@@ -13,63 +13,119 @@
             width: 75%
         }
     </style>
-    <div id='question_page'>
-        <div class='ui items'>
-            <div class="ui inverted segment" id='votebox'>
-                <div class="ui inverted teal button">
-                    <i class="big angle up icon" ng-click='qUpvote(question._id)' ></i>
-                </div></br>
-                <div class="ui inverted teal button">
-                    <i class="big angle down icon" ng-click='qDownvote(question._id)'></i>
-                </div>
-                <h3>{{question.upvotes.length}}</h3>
-                <h3>{{question.downvotes.length}}</h3>
-            </div>
-            <div class='item' id='questionbox'>
-                <div class='content'>
-                    <div class='description'>
-                        <p ng-bind-html='trustedHtml'></p>
+    <div id='the_question'>
+        </br>
+        <h2>{{question.title}}</h2>
+        <div class='meta'>
+            <span class='text'>Question asked by {{question._user.name}} on {{question.posted_at | date:dateFormat }}</span>
+        </div>
+        <div class='ui raised segment'>
+            <div class='ui grid'>
+                <div class='three wide column'>
+                    <div class="ui segment" id='votebox'>
+                        <button class="ui small green labeled icon button">
+                            <i class="chevron up icon" ng-click='qUpvote(question._id)' ></i>
+                            {{question.upvotes.length}}
+                        </button></br></br>
+                        <button class="ui small red labeled icon button">
+                            <i class="chevron down icon" ng-click='qDownvote(question._id)'></i>
+                            {{question.downvotes.length}}
+                        </button>
                     </div>
-                    <div class='meta'>
-                        <span class='text'>Question asked by {{question._user.name}} on {{question.posted_at | date:dateFormat }}</span>
+                </div>
+                <div id='questionbox' class="thirteen wide column">
+                    <p id='question_body' ng-bind-html='trustedHtml'></p>
+                    <div id='question_comments'>
+                        <div class="ui horizontal divider"> Comments </div>
+                        <div class='comment' ng-repeat='comment in question.comments'>
+                            {{comment.comment}} ~ <a class='author'>{{comment._user.name}}</a>
+                            @ <span class='metadata date'>{{comment.createdAt | date:dateFormat}}</span>
+                            <div class="ui divider"></div>
+                        </div>
+                    </div>
+                    <div class='action'>
+                        <a ng-click="">Leave Comment</a>
+                    </div>
+                    <div class="ui form" id='question_comments'>
+                        <div class="field ui inverted light grey segment">
+                            <form ng-submit='createComment(question._id)'>
+                                <div class="field">
+                                    <label>Leave a Comment</label>
+                                    <textarea id="question_comment_input" ng-model="newComment.comment" rows='1'></textarea>
+                                </div>
+                                <button class="ui inverted black button">Post Comment</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class='ui comments' id='question_comments'>
-            <h3 class='ui dividing header'>Comments</h3>
-            <div class='comment' ng-repeat='comment in question.comments'>
-                <a class='avatar'>
-                    <img src='/brokelink.jpg'>
-                </a>
-                <div class='content'>
-                    <a class='author'>{{comment._user.name}}</a>
-                    <div class='metadeta'>
-                        <span class='date'>{{comment.createdAt | date:dateFormat}}</span>
+    </div>
+    <div id='the_answers'>
+        <h1> There are {{question.answers.length}} Answers.</h1>
+        <div class="ui grid" ng-repeat='answer in question.answers'>
+            <div class="two wide column">
+                <div class="ui card">
+                  <a class="image" href="#!user/{{answer._user.id}}">
+                    <img src="{{answer._user.avatar_url}}">
+                  </a>
+                  <div class="content">
+                    <a href="#">{{answer._user.name}}</a>
+                    <div class="meta">
+                      <p><img src="images/ninjastar.png" height="20"> {{answer._user.ninja_stars}}</p>
                     </div>
-                    <div class='text'>
-                        {{comment.comment}}
-                    </div>
-                    <div class="actions">
-                        <a class="reply">Reply</a>
-                    </div>
+                  </div>
                 </div>
             </div>
+            <div class="fourteen wide column">
+                <div class='ui orange segment'>
+                    <div class='ui grid'>
+                        <div class="three wide column">
+                            <div class="ui segment" id='votebox'>
+                                <button class="ui mini green labeled icon button">
+                                    <i class="chevron up icon" ng-click='aUpvote(answer._id)' ></i>
+                                    {{answer.upvotes.length}}
+                                </button></br></br>
+                                <button class="ui mini red labeled icon button">
+                                    <i class="chevron down icon" ng-click='aDownvote(answer._id)'></i>
+                                    {{answer.downvotes.length}}
+                                </button>
+                            </div>
+                        </div>
+                        <div class="thirteen wide column">
+                            <p>{{answer.answer}}</p>
+                            <div id='answer_comments'>
+                                <div class="ui horizontal divider"> Comments </div>
+                                <div class="comment" ng-repeat='comment in answer.comments'>
+                                    {{comment.comment}} ~ <a class='author'>{{comment._user.name}}</a>
+                                    @ <span class='metadata date'>{{comment.createdAt | date:dateFormat}}</span>
+                                    <div class="ui divider"></div>
+                                </div>
+                            </div>
+                            <div class='action'>
+                                <a>Leave Comment</a>
+                            </div>
+                            <div class="ui form" id='question_comments'>
+                                <div class="field ui light grey inverted segment">
+                                    <form ng-submit='createComment(question._id)'>
+                                        <div class="field">
+                                            <label>Leave a Comment</label>
+                                            <textarea id="question_comment_input" ng-model="newComment.comment" rows='1'></textarea>
+                                        </div>
+                                        <button class="ui inverted black button">Post Comment</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
 
-            <p{{comment.comment}}<p>
-            <p>{{comment._user.name}} at {{comment.createdAt}}</p>
-
-            <div class="ui divider"></div>
-        </div>
-        <div class="ui form" id='question_comments'>
-            <div class="field ui inverted segment">
-                <form ng-submit='createComment(question._id)'>
-                    <label>Leave a Comment</label>
-                    <textarea id="question_comment_input" ng-model="newComment.comment" rows='1'></textarea>
-                    <button class="ui inverted orange button">Post Comment</button>
-                </form>
-            </div>
-        </div>
+    </div>
+</div>
+        <!-- </div>
+    </div> -->
+    <!-- <div id='the_answers'>
         <div class="ui horizontal divider"> The Answers </div>
         <div id='the_answers' ng-repeat='answer in question.answers'>
             <p>Upvotes: {{answer.upvotes.length}}, Downvotes {{answer.downvotes.length}}</p>
@@ -99,4 +155,5 @@
             </div>
         </div>
     </div>
+    </div> -->
 </div>
