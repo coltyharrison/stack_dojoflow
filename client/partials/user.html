@@ -42,7 +42,7 @@
               </thead>
               <tbody>
                 <tr ng-repeat='question in profileUser.questions'>
-                    <td><a href="#!/show/{{question._id}}">{{question.title}}</a></td>
+                    <td><a href="#!/question/{{question._id}}">{{question.title}}</a></td>
                     <td>{{question.topic}}</td>
                     <td>{{question.posted_at | date:'medium'}}</td>
                     <td>{{question.upvotes.length}}</td>
@@ -64,7 +64,7 @@
               </thead>
               <tbody>
                 <tr ng-repeat='answer in profileUser.answers'>
-                    <td><a href="#!/show/{{question._id}}">{{answer.answer}}</a></td>
+                    <td><a href="#!/question/{{answer._question._id}}">{{answer.answer}}</a></td>
                     <td>{{answer.topic}}</td>
                     <td>{{answer.createdAt | date:'medium'}}</td>
                     <td>{{answer.upvotes.length}}</td>
