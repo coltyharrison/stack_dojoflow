@@ -1,7 +1,8 @@
 app.controller('questionController', function($scope, $routeParams, questionFactory, $sce) {
     $scope.topic = '';
-    $scope.sortTopic = 'title';
+    // $scope.sortTopic = 'posted_at';
     $scope.newAnswerComment = {};
+    $scope.mdQuestion = '';
     $scope.topicNames = {
         'python': 'Python',
         'htmlcss': 'HTML / CSS',
@@ -57,7 +58,7 @@ app.controller('questionController', function($scope, $routeParams, questionFact
                 for (var key in $scope.questions) {
                     if ($scope.questions[key]['_id'] == $routeParams.id) {
                         $scope.question = $scope.questions[key]
-                        $scope.trustedHtml = $sce.trustAsHtml($scope.question.description)
+                        // $scope.trustedHtml = $sce.trustAsHtml($scope.question.description)
                     }
                 }
             })
@@ -90,7 +91,9 @@ app.controller('questionController', function($scope, $routeParams, questionFact
     }
 
     $scope.createQuestion = function() {
+        $scope.newQuestion.description = $scope.mdQuestion
         questionFactory.createQuestion($scope.newQuestion)
+        $scope.mdQuestion='';
         $scope.newQuestion = {};
         index()
     }

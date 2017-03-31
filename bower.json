@@ -19,7 +19,10 @@
     "angular": "^1.6.3",
     "angular-route": "^1.6.3",
     "semantic": "semantic-ui#^2.2.10",
-    "angular-ui-tinymce": "latest",
-    "bootstrap-markdown": "^2.10.0"
+    "angular-sanitize": "^1.6.4",
+    "wiz-markdown": "^1.3.0"
+  },
+  "resolutions": {
+    "angular": "1.6.4"
   }
 }

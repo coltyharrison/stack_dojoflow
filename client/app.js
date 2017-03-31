@@ -1,4 +1,4 @@
-var app = angular.module('app', ['ngRoute', 'ui.tinymce']);
+var app = angular.module('app', ['ngRoute', 'wiz.markdown']);
 app.config(function($routeProvider) {
     $routeProvider
     .when('/', {

@@ -60,9 +60,9 @@
                     </div>
                 </div>
                 <div id='questionbox' class="thirteen wide column">
-                    <p id='question_body' ng-bind-html='trustedHtml'></p>
+                    <wiz-markdown content="question.description"></wiz-markdown>
                     <div id='question_comments'>
-                        <div class="ui horizontal divider"> Comments </div>
+                        <div class="ui horizontal divider" ng-show="question.comments.length != 0"> Comments </div>
                         <div class='comment' ng-repeat='comment in question.comments'>
                             {{comment.comment}} ~ <a class='author'>{{comment._user.name}}</a>
                             @ <span class='metadata date'>{{comment.createdAt | date:dateFormat}}</span>
@@ -89,7 +89,7 @@
         <h2> There are {{question.answers.length}} Answers.</h2>
         <div class="ui grid" ng-repeat='answer in question.answers | orderBy: "-createdAt"'>
             <div class="two wide column">
-                <div class="ui orange card">
+                <div class="ui teal card">
                   <a class="image" href="#!user/{{answer._user.id}}">
                     <img src="{{answer._user.avatar_url}}">
                   </a>

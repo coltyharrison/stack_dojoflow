@@ -4,42 +4,61 @@
   }
 </style>*/ -->
 <div class="ui container">
-    <script>
-    $(document).ready(function() {
-      $("#question_text").markdown({autofocus:false,savable:true})
-    });
-    </script>
     <nav-bar></nav-bar>
     <div class="ui segment center aligned">
         <img height="110" src="images/stackdojoflow.png">
     </div>
-    <div class="ui very padded segment">
+    <div class="ui padded segment">
       <div class="ui form">
-        <h2 class="ui center aligned icon header">
-        </h2>
         <form ng-submit="createQuestion()">
           <div class="field">
             <label class="field">Title</label>
             <input class="field" placeholder="What's you programming question? Be specific." type="text" ng-model="newQuestion.title" required>
           </div>
           <div class="field">
-            <textarea id='question_text' ng-model="newQuestion.description" placeholder="Question Description" rows="4" cols="80" required></textarea>
+              <wiz-markdown-editor content="mdQuestion">
+                  <wiz-toolbar-button class="ui tiny inverted purple button" command="bold">Bold</wiz-toolbar-button>
+                  <wiz-toolbar-button class="ui tiny inverted purple button" command="italic">Italic</wiz-toolbar-button>
+                  <wiz-toolbar-button class="ui tiny inverted purple button" command="undo">UNDO</wiz-toolbar-button>
+                  <wiz-toolbar-button class="ui tiny inverted purple button" command="redo">REDO</wiz-toolbar-button>
+                  <wiz-toolbar-button class="ui tiny inverted purple button" command="heading">HEADING</wiz-toolbar-button>
+                  <wiz-toolbar-button class="ui tiny inverted purple button" command="code">CODE</wiz-toolbar-button>
+                  <wiz-toolbar-button class="ui tiny inverted purple button" command="ullist">ULLIST</wiz-toolbar-button>
+                  <wiz-toolbar-button class="ui tiny inverted purple button" command="ollist">OLLIST</wiz-toolbar-button>
+                  <wiz-toolbar-button class="ui tiny inverted purple button" command="indent">INDENT</wiz-toolbar-button>
+                  <wiz-toolbar-button class="ui tiny inverted purple button" command="outdent">OUTDENT</wiz-toolbar-button>
+                  <wiz-toolbar-button class="ui tiny inverted purple button" command="link">LINK</wiz-toolbar-button>
+                  <wiz-toolbar-button class="ui tiny inverted purple button" command="img">IMG</wiz-toolbar-button>
+                  <wiz-toolbar-button class="ui tiny inverted purple button" command="hr">HR</wiz-toolbar-button>
+                  <wiz-toolbar-button class="ui tiny inverted purple button" command="h0">H0</wiz-toolbar-button>
+                  <wiz-toolbar-button class="ui tiny inverted purple button" command="h1">H1</wiz-toolbar-button>
+                  <wiz-toolbar-button class="ui tiny inverted purple button" command="h2">H2</wiz-toolbar-button>
+                  <wiz-toolbar-button class="ui tiny inverted purple button" command="h3">H3</wiz-toolbar-button>
+                  <wiz-toolbar-button class="ui tiny inverted purple button" command="h4">H4</wiz-toolbar-button>
+                  <wiz-toolbar-button class="ui tiny inverted purple button" command="h5">H5</wiz-toolbar-button>
+                  <wiz-toolbar-button class="ui tiny inverted purple button" command="h6">H6</wiz-toolbar-button>
+              </wiz-markdown-editor>
+          </div>
+          <div id='the_preview' class='ui segment' ng-show="mdQuestion !== ''">
+              <h3>I'm a preview of yo shit! make me pretty</h3>
+              <wiz-markdown content="mdQuestion"></wiz-markdown>
           </div>
           <br>
-          <select ng-model="newQuestion.topic" required>
-            <option selected disabled value="">Topic</option>
-            <option value="python">Python</option>
-            <option value="htmlcss">HTML / CSS</option>
-            <option value="mean">MEAN</option>
-            <option value="ruby">Ruby</option>
-            <option value="ios">iOS</option>
-            <option value="csharp">C# / ASP.NET</option>
-            <option value="misc">Misc</option>
-          </select>
+          <div class="field">
+              <select ng-model="newQuestion.topic" class="ui fluid dropdown" required>
+                <option selected disabled value="">Topic</option>
+                <option value="python">Python</option>
+                <option value="htmlcss">HTML / CSS</option>
+                <option value="mean">MEAN</option>
+                <option value="ruby">Ruby</option>
+                <option value="ios">iOS</option>
+                <option value="csharp">C# / ASP.NET</option>
+                <option value="misc">Misc</option>
+              </select>
+          </div>
           <br>
-          <button class="btn btn-success btn- m"type="submit" name="button">Post Your Question</button>
+          <button class="ui orange button"type="submit" name="button">Post Your Question</button>
         </form>
       </div>
     </div>
-
 </div>

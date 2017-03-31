@@ -8,19 +8,19 @@
     <div class="ui grid">
         <div class="twelve wide column">
             <div id='popular_questions'>
-                <table class="ui teal celled table">
+                <table class="ui small orange celled table">
                     <thead>
                         <tr>
                             <th>Question</th>
                             <th>Topic</th>
-                            <th>Ninja Who Posted</th>
-                            <th>Posted Date</th>
+                            <th>Ninja</th>
+                            <th>Posted</th>
                             <th>Upvotes</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr ng-repeat='question in questions | orderBy : sortQuestion'>
-                            <td><a href="#!/question/{{question._id}}">{{question.title}}</a></td>
+                            <td><div class="dashtabletext"><a href="#!/question/{{question._id}}">{{question.title}}</a></div></td>
                             <td><a href="#!/topic/{{question.topic}}">{{topicNames[question.topic]}}</a></td>
                             <td>
                                     <a href='#!/user/{{question._user.id}}'>{{question._user.name}}</a>
@@ -51,7 +51,7 @@
             </div>
             <div id='popular_ninjas' class="ui orange card" ng-controller='userController'>
                 <div class="content">
-                    <div class="header">Popular Ninjas <img src="./../images/ninja_turtle.png" alt="" style="float: right"></i>
+                    <div class="header">Top Ninjas <img src="./../images/ninja_turtle.png" alt="" style="float: right"></i>
                     </div>
                 </div>
                 <div class="content" ng-repeat='user in users | orderBy: "-ninja_stars" | limitTo: 5'>

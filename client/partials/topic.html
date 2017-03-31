@@ -11,8 +11,8 @@
                 <h3><em>No Questions...</em></h3>
             </div>
             <div ng-if='questionsByTopic.length > 0'>
-                <p>Sort By: <a href="" ng-click="sortTopic = posted_at">Recent</a> | <a href="" ng-click="sortTopic = upvotes">Popular</a></p>
-                <table class="ui inverted small table">
+                <p>Sort By: <a href="" ng-click="sortTopic = '-posted_at'">Recent</a> | <a href="" ng-click="sortTopic = upvotes.length">Popular</a></p>
+                <table class="ui small orange celled table">
                     <thead>
                         <tr>
                             <th>Question</th>
@@ -22,8 +22,8 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat='question in questionsByTopic | orderBy:sortTopic'>
-                            <td><a href="#!/show/{{question.id}}">{{question.title}}</a></td>
+                        <tr ng-repeat='question in questionsByTopic | orderBy: sortTopic'>
+                            <td><div class="tabletext"><a href="#!/show/{{question.id}}">{{question.title}}</a></div></td>
                             <td>{{question._user.name}}</td>
                             <td>{{question.topic}}</td>
                             <td>{{question.posted_at | date:'medium'}}</td>

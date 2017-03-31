@@ -33,7 +33,7 @@
             <div class="ui center aligned segment" ng-if='profileUser.questions.length === 0'>
               <h3><em>No Questions...</em></h3>
             </div>
-            <table class="ui inverted small table" ng-if='profileUser.questions.length > 0'>
+            <table class="ui small orange celled table" ng-if='profileUser.questions.length > 0' ng-controller='questionController'>
               <thead>
                 <tr>
                     <th>Question</th>
@@ -44,8 +44,8 @@
               </thead>
               <tbody>
                 <tr ng-repeat='question in profileUser.questions'>
-                    <td><a href="#!/question/{{question._id}}">{{question.title}}</a></td>
-                    <td>{{question.topic}}</td>
+                    <td><div class="tabletext"><a href="#!/question/{{question._id}}">{{question.title}}</a></div></td>
+                    <td><a href="#!/topic/{{question.topic}}">{{topicNames[question.topic]}}</a></td>
                     <td>{{question.posted_at | date:'medium'}}</td>
                     <td>{{question.upvotes.length}}</td>
                 </tr>
@@ -55,7 +55,7 @@
             <div class="ui center aligned segment" ng-if='profileUser.answers.length === 0'>
               <h3><em>No Answers...</em></h3>
             </div>
-            <table class="ui small table" ng-if='profileUser.answers.length > 0'>
+            <table class="ui small teal celled table" ng-if='profileUser.answers.length > 0' ng-controller='questionController'>
               <thead>
                 <tr>
                     <th>Answer</th>
@@ -66,8 +66,8 @@
               </thead>
               <tbody>
                 <tr ng-repeat='answer in profileUser.answers'>
-                    <td><a href="#!/question/{{answer._question._id}}">{{answer.answer}}</a></td>
-                    <td>{{answer.topic}}</td>
+                    <td><div class="tabletext"><a href="#!/question/{{answer._question._id}}">{{answer.answer}}</a></div></td>
+                    <td><a href="#!/topic/{{answer.topic}}">{{topicNames[answer.topic]}}</a></td>
                     <td>{{answer.createdAt | date:'medium'}}</td>
                     <td>{{answer.upvotes.length}}</td>
                 </tr>
