@@ -7,7 +7,7 @@
 <div class="ui container">
     <nav-bar></nav-bar>
     <div class="ui very padded segment">
-      <div class="ui form segment">
+      <div class="ui form">
         <h2 class="ui center aligned icon header">
         </h2>
         <form ng-submit="createQuestion()">
@@ -20,7 +20,7 @@
           </div>
           <br>
           <select ng-model="newQuestion.topic" required>
-            <option selected disabled value="">Select Language</option>
+            <option selected disabled value="">Topic</option>
             <option value="python">Python</option>
             <option value="htmlcss">HTML / CSS</option>
             <option value="mean">MEAN</option>
