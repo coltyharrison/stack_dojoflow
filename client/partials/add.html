@@ -15,32 +15,25 @@
             <label class="field">Title</label>
             <input class="field" placeholder="What's you programming question? Be specific." type="text" ng-model="newQuestion.title" required>
           </div>
+
+
           <div class="field">
               <wiz-markdown-editor content="mdQuestion">
-                  <wiz-toolbar-button class="ui tiny inverted purple button" command="bold">Bold</wiz-toolbar-button>
-                  <wiz-toolbar-button class="ui tiny inverted purple button" command="italic">Italic</wiz-toolbar-button>
-                  <wiz-toolbar-button class="ui tiny inverted purple button" command="undo">UNDO</wiz-toolbar-button>
-                  <wiz-toolbar-button class="ui tiny inverted purple button" command="redo">REDO</wiz-toolbar-button>
-                  <wiz-toolbar-button class="ui tiny inverted purple button" command="heading">HEADING</wiz-toolbar-button>
-                  <wiz-toolbar-button class="ui tiny inverted purple button" command="code">CODE</wiz-toolbar-button>
-                  <wiz-toolbar-button class="ui tiny inverted purple button" command="ullist">ULLIST</wiz-toolbar-button>
-                  <wiz-toolbar-button class="ui tiny inverted purple button" command="ollist">OLLIST</wiz-toolbar-button>
-                  <wiz-toolbar-button class="ui tiny inverted purple button" command="indent">INDENT</wiz-toolbar-button>
-                  <wiz-toolbar-button class="ui tiny inverted purple button" command="outdent">OUTDENT</wiz-toolbar-button>
-                  <wiz-toolbar-button class="ui tiny inverted purple button" command="link">LINK</wiz-toolbar-button>
-                  <wiz-toolbar-button class="ui tiny inverted purple button" command="img">IMG</wiz-toolbar-button>
-                  <wiz-toolbar-button class="ui tiny inverted purple button" command="hr">HR</wiz-toolbar-button>
-                  <wiz-toolbar-button class="ui tiny inverted purple button" command="h0">H0</wiz-toolbar-button>
-                  <wiz-toolbar-button class="ui tiny inverted purple button" command="h1">H1</wiz-toolbar-button>
-                  <wiz-toolbar-button class="ui tiny inverted purple button" command="h2">H2</wiz-toolbar-button>
-                  <wiz-toolbar-button class="ui tiny inverted purple button" command="h3">H3</wiz-toolbar-button>
-                  <wiz-toolbar-button class="ui tiny inverted purple button" command="h4">H4</wiz-toolbar-button>
-                  <wiz-toolbar-button class="ui tiny inverted purple button" command="h5">H5</wiz-toolbar-button>
-                  <wiz-toolbar-button class="ui tiny inverted purple button" command="h6">H6</wiz-toolbar-button>
+                <div class="ui fluid buttons">
+                  <wiz-toolbar-button class="ui tiny button" command="code">{code}</wiz-toolbar-button>
+                  <wiz-toolbar-button class="ui tiny button" command="bold">bold</wiz-toolbar-button>
+                  <wiz-toolbar-button class="ui tiny button" command="italic">italic</wiz-toolbar-button>
+                  <wiz-toolbar-button class="ui tiny button" command="heading">heading</wiz-toolbar-button>
+                  <wiz-toolbar-button class="ui tiny button" command="ullist">Unordered List</wiz-toolbar-button>
+                  <wiz-toolbar-button class="ui tiny button" command="ollist">Ordered List</wiz-toolbar-button>
+                  <wiz-toolbar-button class="ui tiny button" command="link">Linke</wiz-toolbar-button>
+                  <wiz-toolbar-button class="ui tiny button" command="img">Image</wiz-toolbar-button>
+                  <wiz-toolbar-button class="ui tiny button" command="hr">&#60;hr&#62;</wiz-toolbar-button>
+                </div>
               </wiz-markdown-editor>
           </div>
           <div id='the_preview' class='ui segment' ng-show="mdQuestion !== ''">
-              <h3>I'm a preview of yo shit! make me pretty</h3>
+              <h3>Preview:</h3>
               <wiz-markdown content="mdQuestion"></wiz-markdown>
           </div>
           <br>
