@@ -8,13 +8,13 @@
     <div class="ui grid">
         <div class="twelve wide column">
             <div id='popular_questions'>
-                <table class="ui teal celled table">
+                <table class="ui small orange celled table">
                     <thead>
                         <tr>
                             <th>Question</th>
                             <th>Topic</th>
-                            <th>Ninja Who Posted</th>
-                            <th>Posted Date</th>
+                            <th>Ninja</th>
+                            <th>Posted</th>
                             <th>Upvotes</th>
                         </tr>
                     </thead>
@@ -51,7 +51,7 @@
             </div>
             <div id='popular_ninjas' class="ui orange card" ng-controller='userController'>
                 <div class="content">
-                    <div class="header">Popular Ninjas <img src="./../images/ninja_turtle.png" alt="" style="float: right"></i>
+                    <div class="header">Top Ninjas <img src="./../images/ninja_turtle.png" alt="" style="float: right"></i>
                     </div>
                 </div>
                 <div class="content" ng-repeat='user in users | orderBy: "-ninja_stars" | limitTo: 5'>

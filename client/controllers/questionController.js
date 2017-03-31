@@ -1,6 +1,6 @@
 app.controller('questionController', function($scope, $routeParams, questionFactory, $sce) {
     $scope.topic = '';
-    $scope.sortTopic = 'title';
+    // $scope.sortTopic = 'posted_at';
     $scope.newAnswerComment = {};
     $scope.topicNames = {
         'python': 'Python',
