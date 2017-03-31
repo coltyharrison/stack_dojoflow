@@ -44,3 +44,9 @@ app.config(function($routeProvider) {
         templateUrl: '/partials/easternav.html'
     };
 })
+.directive('footer', function() {
+    return {
+        restrict: 'E',
+        templateUrl: '/partials/footer.html'
+    };
+})
