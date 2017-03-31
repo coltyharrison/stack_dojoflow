@@ -31,15 +31,15 @@ var pubsub = require('./server/config/pubsub');
 
 io.sockets.on('connection', function (socket) {
 	console.log( "WE ARE USING SOCKETS!", socket.id );
-	
+
 	// console.log(io.sockets);
-	
-	
+
+
 	socket.on( "page_load", function ( data ) {
 		// console.log( data.user );
 		//console.log(socket.id / data.user.name + " navigated to page " + data.location.pathname + data.location.hash );
 		// socket.broadcast.emit('reader', data);
 		pubsub.publish( socket, data );
 	} );
-	
+
 });

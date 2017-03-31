@@ -60,7 +60,7 @@
                     </div>
                 </div>
                 <div id='questionbox' class="thirteen wide column">
-                    <p id='question_body' ng-bind-html='trustedHtml'></p>
+                    <wiz-markdown content="question.description"></wiz-markdown>
                     <div id='question_comments'>
                         <div class="ui horizontal divider" ng-show="question.comments.length != 0"> Comments </div>
                         <div class='comment' ng-repeat='comment in question.comments'>
