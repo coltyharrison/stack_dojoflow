@@ -32,6 +32,7 @@ app.factory('userFactory', function($http, $location) {
         $http.get('/logOut')
         .then(function() {
             user = {};
+			g_User = user;
             $location.url('/');
         });
     };

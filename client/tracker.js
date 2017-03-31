@@ -1,11 +1,12 @@
 var g_User = {}; // the current user
 var g_Listener = location.pathname + location.hash; // the path we are going to be listening to
-var g_rgToasts = [{name:"Bob"}, {name:"Billy"}, {name:"Ryan"}]; // array of toasts to iterate through
+var g_rgToasts = [{name:"Bob", avatar_url: "https://avatars0.githubusercontent.com/u/23123?v=3&s=400"}, {name:"Billy", avatar_url:"https://avatars1.githubusercontent.com/u/3842698?v=3&s=460"}, {name:"Ryan", avatar_url: "https://avatars3.githubusercontent.com/u/5647963?v=3&s=460"}]; // array of toasts to iterate through
 var g_ToastInterval; // Interval ID of our toast rendering function
 
 const ENABLE_TRACKER = true;
 const SOCKET_SERVER_URL = "http://localhost";
 const SOCKET_SERVER_PORT = ":8000";
+const LISTEN_TO_SELF = true; // For Debugging, users can broadcast events to themselves
 
 $(document).ready(function (){
 	
@@ -33,9 +34,8 @@ $(document).ready(function (){
 					$("<img>", {"class": "ui mini circular image", src: user.avatar_url})
 				)
 				.append(
-					$("<div>", {"class": "content"}).html( "<u>" + user.name + "</u> is now viewing" )
-				);
-			var $p = $( "<p>", {"class": 'adsfsdf'} ).text( user.name + " is now viewing" ); // build element to render
+					$("<div>", {"class": "content"}).html( "<a href='#!/user/" + user.id + "'>" + user.name + "</a> is now viewing" )
+				); // build element to render
 			$msg.slideDown().html( $h2 ).hide().fadeIn(); // render toast
 		}
 		else
@@ -70,7 +70,15 @@ $(document).ready(function (){
 		console.log("Listening on", g_Listener);
 		socket.on(g_Listener, function ( data ) {
 			console.log('Listener results:', data);
-			g_rgToasts.push(data.user);
+			
+			if( data.user.id > 0 && (data.user.login != g_User.login || LISTEN_TO_SELF) )
+			{
+				g_rgToasts.unshift(data.user);
+			}
+			else{
+				return;
+			}
+			
 			if(!g_ToastInterval)
 			{
 				renderToasts();
@@ -86,46 +94,4 @@ $(document).ready(function (){
 		// socket.emit('page_unload', {user: g_User, location: location});
 	});
 	
-	
-	// listener = "/";
-	
-	
-	$('button').click(function (){
-		socket.emit("button_clicked", {reason: "because I want to learn about sockets!"});
-	});
-	
-	socket.on("reader", function ( data ) {
-		console.log('Reader: ' + data);
-		$('#tracker').html(data.user + " is now reading " + data.base_url );
-		$('#message').slideDown();
-	});
-	
-	
-	$('form').submit(function () {
-		event.preventDefault();
-		console.log('Submitting the form via sockets...');
-		var form = {
-			name: $('#name').val(),
-			loc: $("#location").val(),
-			lang: $("#lang").val(),
-			comment: $("#comment").val(),
-		};
-		socket.emit( "posting_form", {form:form} );
-	});
-	
-	socket.on('server_response', function (data){
-		console.log('The server says: ' + data.response);
-	});
-	
-	socket.on('updated_message', function (data){
-		var form = data;
-		console.log('The server says: ' + JSON.stringify(data));
-		$('#form_data').text(`name: '${form.name}', location: '${form.loc}', language: '${form.lang}', comment: '${form.comment}'`);
-	});
-	
-	socket.on('random_number', function (data){
-		console.log('The server says: ' + data.response);
-		$('#lucky').text(data.response);
-		$('#message').slideDown();
-	});
 });
