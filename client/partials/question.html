@@ -28,6 +28,9 @@
             white-space: normal;
             word-break: break-all;
         }
+        #the_real_answer img {
+            max-width:530px;
+        }
     </style>
     <script type="text/javascript">
       "use strict";
@@ -129,7 +132,7 @@
                             </div>
                         </div>
                         <div class="thirteen wide column textresponses">
-                            <wiz-markdown content="answer.answer" class="code"></wiz-markdown>
+                            <wiz-markdown id='the_real_answer' content="answer.answer" class="code"></wiz-markdown>
                             <div id='answer_comments'>
                                 <div class="ui horizontal divider" ng-show="answer.comments.length != 0"> Comments </div>
                                 <div class="comment" ng-repeat='comment in answer.comments'>
