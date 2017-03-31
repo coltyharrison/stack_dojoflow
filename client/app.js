@@ -37,4 +37,10 @@ app.config(function($routeProvider) {
         restrict: 'E',
         templateUrl: '/partials/navbar.html'
     };
-});
+})
+.directive('enavBar', function() {
+    return {
+        restrict: 'E',
+        templateUrl: '/partials/easternav.html'
+    };
+})
