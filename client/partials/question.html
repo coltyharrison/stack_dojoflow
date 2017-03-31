@@ -76,6 +76,7 @@
         </div>
     </div>
     <div id='the_answers'>
+      <br><br>
         <h2> There are {{question.answers.length}} Answers.</h2>
         <div class="ui grid" ng-repeat='answer in question.answers | orderBy: "-createdAt"'>
             <div class="two wide column">
