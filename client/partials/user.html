@@ -66,7 +66,7 @@
               </thead>
               <tbody>
                 <tr ng-repeat='answer in profileUser.answers'>
-                    <td><div class="tabletext"><a href="#!/question/{{answer._question._id}}">{{answer.answer}}</a></div></td>
+                    <td><div class="tabletext"><a href="#!/question/{{answer._question}}">{{answer.answer}}</a></div></td>
                     <td><a href="#!/topic/{{answer.topic}}">{{topicNames[answer.topic]}}</a></td>
                     <td>{{answer.createdAt | date:'medium'}}</td>
                     <td>{{answer.upvotes.length}}</td>
