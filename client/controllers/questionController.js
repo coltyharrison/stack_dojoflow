@@ -3,6 +3,9 @@ app.controller('questionController', function($scope, $routeParams, questionFact
     // $scope.sortTopic = 'posted_at';
     $scope.newAnswerComment = {};
     $scope.mdQuestion = '';
+    $scope.mdAnswer='';
+    $scope.newAnswer={};
+
     $scope.topicNames = {
         'python': 'Python',
         'htmlcss': 'HTML / CSS',
@@ -92,7 +95,6 @@ app.controller('questionController', function($scope, $routeParams, questionFact
 
     $scope.createQuestion = function() {
         $scope.newQuestion.description = $scope.mdQuestion
-        console.log($scope.newQuestion.description)
         questionFactory.createQuestion($scope.newQuestion)
         $scope.mdQuestion='';
         $scope.newQuestion = {};
@@ -109,7 +111,9 @@ app.controller('questionController', function($scope, $routeParams, questionFact
 
     // needs the question id passed to this function
     $scope.createAnswer = function(question_id) {
+        $scope.newAnswer.answer = $scope.mdAnswer
         questionFactory.createAnswer($scope.newAnswer, question_id, function() {
+            $scope.mdAnswer='';
             $scope.newAnswer = {};
             index();
         })
