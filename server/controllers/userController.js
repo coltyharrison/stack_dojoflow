@@ -33,6 +33,12 @@ module.exports = (function() {
             User.findOne({id: req.params.id})
             .populate('questions')
             .populate('answers')
+            .populate({
+              path: 'answers',
+              populate: {
+                path: '_questions'
+              }
+            })
             .populate('comments')
             .populate('favorites')
             .exec(function(err, user) {
