@@ -13,10 +13,8 @@
     <div class="ui segment center aligned">
         <img height="110" src="images/stackdojoflow.png">
     </div>
-    <div class="ui very padded segment">
+    <div class="ui padded segment">
       <div class="ui form">
-        <h2 class="ui center aligned icon header">
-        </h2>
         <form ng-submit="createQuestion()">
           <div class="field">
             <label class="field">Title</label>
@@ -26,7 +24,7 @@
             <textarea id='question_text' ng-model="newQuestion.description" placeholder="Question Description" rows="4" cols="80" required></textarea>
           </div>
           <br>
-          <select ng-model="newQuestion.topic" required>
+          <select ng-model="newQuestion.topic" class="ui fluid dropdown" required>
             <option selected disabled value="">Topic</option>
             <option value="python">Python</option>
             <option value="htmlcss">HTML / CSS</option>
@@ -37,7 +35,7 @@
             <option value="misc">Misc</option>
           </select>
           <br>
-          <button class="btn btn-success btn- m"type="submit" name="button">Post Your Question</button>
+          <button class="ui orange button"type="submit" name="button">Post Your Question</button>
         </form>
       </div>
     </div>
