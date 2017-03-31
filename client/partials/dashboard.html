@@ -1,10 +1,22 @@
+<style>
+    #nopadding {
+        padding-top: 0px;
+        padding-bottom: 0px;
+    }
+</style>
 <div class='ui container'>
     <nav-bar></nav-bar>
     <div class="ui segment center aligned">
         <img height="110" src="images/stackdojoflow.png">
     </div>
-    <h2>Questions<a href="#!/easter">&nbsp;</a></h2>
-    <p>Sort By: <a href="" ng-click="sortQuestion = '-posted_at'">Recent</a> | <a href="" ng-click="sortQuestion = '-upvotes.length'">Popular</a></p>
+    <p>Sort By: <a href="" ng-click="sortQuestion = '-posted_at'">Recent</a> | <a href="" ng-click="sortQuestion = '-upvotes.length'">Popular</a><a href="#!/easter">&nbsp;</a></p>
+    <div class="ui grid">
+        <div class="twelve wide column">
+            <div class="ui fluid input">
+                <input class='prompt' type='text' ng-model='questionSearch' placeholder="Search Questions...">
+            </div>
+        </div>
+    </div>
     <div class="ui grid">
         <div class="twelve wide column">
             <div id='popular_questions'>
@@ -19,11 +31,13 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat='question in questions | orderBy : sortQuestion'>
-                            <td><div class="dashtabletext"><a href="#!/question/{{question._id}}">{{question.title}}</a></div></td>
+                        <tr ng-repeat='question in questions | orderBy : sortQuestion | filter:questionSearch'>
+                            <td>
+                                <div class="dashtabletext"><a href="#!/question/{{question._id}}">{{question.title}}</a></div>
+                            </td>
                             <td><a href="#!/topic/{{question.topic}}">{{topicNames[question.topic]}}</a></td>
                             <td>
-                                    <a href='#!/user/{{question._user.id}}'>{{question._user.name}}</a>
+                                <a href='#!/user/{{question._user.id}}'>{{question._user.name}}</a>
                             </td>
                             <td>{{question.posted_at | date:'medium'}}</td>
                             <td>{{question.upvotes.length}}</td>
@@ -60,8 +74,8 @@
                         {{user.name}}
                     </div>
                     <div class="metadata">
-                         <img src="images/ninjastar.png" height="20"> {{user.ninja_stars}}
-                     </div>
+                        <img src="images/ninjastar.png" height="20"> {{user.ninja_stars}}
+                    </div>
                 </div>
             </div>
         </div>
