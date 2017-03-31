@@ -23,7 +23,7 @@
                     </thead>
                     <tbody>
                         <tr ng-repeat='question in questionsByTopic | orderBy: sortTopic'>
-                            <td><div class="tabletext"><a href="#!/show/{{question.id}}">{{question.title}}</a></div></td>
+                            <td><div class="tabletext"><a href="#!/question/{{question._id}}">{{question.title}}</a></div></td>
                             <td>{{question._user.name}}</td>
                             <td>{{question.topic}}</td>
                             <td>{{question.posted_at | date:'medium'}}</td>

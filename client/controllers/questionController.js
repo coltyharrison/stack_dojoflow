@@ -92,6 +92,7 @@ app.controller('questionController', function($scope, $routeParams, questionFact
 
     $scope.createQuestion = function() {
         $scope.newQuestion.description = $scope.mdQuestion
+        console.log($scope.newQuestion.description)
         questionFactory.createQuestion($scope.newQuestion)
         $scope.mdQuestion='';
         $scope.newQuestion = {};
