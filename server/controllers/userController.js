@@ -14,6 +14,16 @@ module.exports = (function() {
             }
         },
 
+        getUsers: function(req, res) {
+            User.find({}, function (err, users) {
+                if (err) {
+                    console.log(err)
+                } else {
+                    res.json(users)
+                }
+            })
+        },
+
         logOut: function(req, res) {
             req.logout();
             res.json(true);

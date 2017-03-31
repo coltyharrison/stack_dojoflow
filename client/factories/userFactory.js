@@ -19,6 +19,15 @@ app.factory('userFactory', function($http, $location) {
         }
     };
 
+    factory.getUsers = function(cb) {
+        $http.get('/getUsers').then(function(output){
+            if (output.data) {
+                users = output.data
+                cb(users);
+            } 
+        })
+    }
+
     factory.logOut = function() {
         $http.get('/logOut')
         .then(function() {
