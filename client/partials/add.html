@@ -1,36 +1,38 @@
+<!-- /*<style type="text/css">
+  * {
+    border: 1px dotted red
+  }
+</style>*/ -->
+
 <div class="ui container">
     <nav-bar></nav-bar>
-    <div class="ui form segment">
-      <span class="floated right item"><a href="#!/dash">Go Back</a></span>
-      <h2 class="ui center aligned icon header">
-      <i class="comments outline icon"></i>
-      Add Question
-      </h2>
-      <hr>
-      <form ng-submit="createQuestion()">
-        <div class="two fields">
+    <div class="ui very padded segment">
+      <div class="ui form segment">
+        <h2 class="ui center aligned icon header">
+        </h2>
+        <form ng-submit="createQuestion()">
           <div class="field">
-            <label>Question</label>
-            <input placeholder="Question Title" type="text" ng-model="newQuestion.title" required>
+            <label class="field">Title</label>
+            <input class="field" placeholder="What's you programming question? Be specific." type="text" ng-model="newQuestion.title" required>
           </div>
           <div class="field">
-            <label>Description</label>
             <textarea ui-tinymce ng-model="newQuestion.description" placeholder="Question Description" rows="4" cols="80" required></textarea>
           </div>
-        </div>
-        <br>
-        <select ng-model="newQuestion.topic" required>
-          <option selected disabled value="">Select Language</option>
-          <option value="python">Python</option>
-          <option value="htmlcss">HTML / CSS</option>
-          <option value="mean">MEAN</option>
-          <option value="ruby">Ruby</option>
-           <option value="ios">iOS</option>
-            <option value="csharp">C# / ASP.NET</option>
-             <option value="misc">Misc</option>
-        </select>
-        <br>
-        <button class="btn btn-success btn- m"type="submit" name="button">Create</button>
-      </form>
+          <br>
+          <select ng-model="newQuestion.topic" required>
+            <option selected disabled value="">Select Language</option>
+            <option value="python">Python</option>
+            <option value="htmlcss">HTML / CSS</option>
+            <option value="mean">MEAN</option>
+            <option value="ruby">Ruby</option>
+             <option value="ios">iOS</option>
+              <option value="csharp">C# / ASP.NET</option>
+               <option value="misc">Misc</option>
+          </select>
+          <br>
+          <button class="btn btn-success btn- m"type="submit" name="button">Post Your Question</button>
+        </form>
+      </div>
     </div>
+
 </div>
