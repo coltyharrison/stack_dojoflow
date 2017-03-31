@@ -4,6 +4,12 @@ body {
     background-size: 20%;
     background-repeat:repeat;
 }
+#popular_topics img {
+    margin-left:-125px;
+}
+#pot_cat {
+    width:232px;
+}
 </style>
 <div class='ui container'>
     <enav-bar></enav-bar>
@@ -52,18 +58,10 @@ body {
         <div class="four wide column">
             <div id='popular_topics' class="ui orange card">
                 <div class="content">
-                    <div class="header">Popular Topics</div>
+                    <div class="header">Popular <strike>Topics</strike> PotatoCat</div>
                 </div>
                 <div class="content">
-                    <div class="ui small feed">
-                        <div class="event" ng-repeat='topic in topics | orderBy:"-questions"'>
-                            <div class="content">
-                                <div class="summary">
-                                    <a href='#!/topic/{{topic.topic}}'>{{topic.name}}</a> <strong class="right floated">{{topic.questions}} Questions</strong>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <img src='images/potato-cat.png'>
                 </div>
             </div>
             <div id='popular_ninjas' class="ui orange card" ng-controller='userController'>
@@ -71,14 +69,8 @@ body {
                     <div class="header">Top Ninjas <img src="./../images/ninja_turtle.png" alt="" style="float: right"></i>
                     </div>
                 </div>
-                <div class="content" ng-repeat='user in users | orderBy: "-ninja_stars" | limitTo: 5'>
-                    <img class="right floated mini ui image" src="{{user.avatar_url}}">
-                    <div class="header">
-                        {{user.name}}
-                    </div>
-                    <div class="metadata">
-                        <img src="images/ninjastar.png" height="20"> {{user.ninja_stars}}
-                    </div>
+                <div class="content">
+                    <img id='pot_cat' src='images/potcat2.jpg'>
                 </div>
             </div>
         </div>
