@@ -82,7 +82,7 @@
         </div>
         <div id='popular_ninjas' class="ui teal card" ng-controller='userController'>
             <div class="content">
-                <div class="header">Popular Ninjas <i class='large spy icon'></i></div>
+                <div class="header">Popular Ninjas <img src="./../images/ninja_turtle.png" alt="" style="float: right"></i></div>
             </div>
             <div class="content" ng-repeat='user in users | orderBy: "-ninja_stars"'>
                 <img class="right floated mini ui image" src="{{user.avatar_url}}">
