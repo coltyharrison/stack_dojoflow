@@ -40,7 +40,7 @@
         <img height="110" src="images/stackdojoflow.png">
     </div>
     <div id='the_question'>
-        <h2>{{question.title}}</h2>
+        <h2>"{{question.title}}"</h2>
         <div class='meta'>
             <span class='text'>Question asked by {{question._user.name}} on {{question.posted_at | date:dateFormat }}</span>
         </div>
@@ -52,6 +52,7 @@
                             <i class="chevron up icon" ng-click='qUpvote(question._id)' ></i>
                             {{question.upvotes.length}}
                         </button>
+                        <br><br>
                         <button class="ui small red labeled icon button">
                             <i class="chevron down icon" ng-click='qDownvote(question._id)'></i>
                             {{question.downvotes.length}}
