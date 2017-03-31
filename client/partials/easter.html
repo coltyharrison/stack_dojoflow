@@ -1,9 +1,18 @@
+<style>
+body {
+    background-image: url('images/easterbunny.jpg');
+    background-size: 20%;
+    background-repeat:repeat;
+}
+</style>
 <div class='ui container'>
-    <nav-bar></nav-bar>
+    <enav-bar></enav-bar>
     <div class="ui segment center aligned">
-        <img height="110" src="images/stackdojoflow.png">
+        <img height="110" src="images/peep.gif">
+        <img height="110" src="images/jackoverflow.png">
+        <img height="110" src="images/peep.gif">
     </div>
-    <h2>Questions<a href="#!/easter">&nbsp;</a></h2>
+    <h2>Questions</h2>
     <p>Sort By: <a href="" ng-click="sortQuestion = '-posted_at'">Recent</a> | <a href="" ng-click="sortQuestion = '-upvotes.length'">Popular</a></p>
     <div class="ui grid">
         <div class="twelve wide column">
@@ -23,7 +32,12 @@
                             <td><a href="#!/question/{{question._id}}">{{question.title}}</a></td>
                             <td><a href="#!/topic/{{question.topic}}">{{topicNames[question.topic]}}</a></td>
                             <td>
-                                    <a href='#!/user/{{question._user.id}}'>{{question._user.name}}</a>
+                                <h4 class="ui image header">
+                            <img src="{{question._user.avatar_url}}" class="ui mini rounded image">
+                            <div class="content">
+                                <a href='#!/user/{{question._user.id}}'>{{question._user.name}}</a>
+                                <div class="sub header">Current Stack</div>
+                            </div></h4>
                             </td>
                             <td>{{question.posted_at | date:'medium'}}</td>
                             <td>{{question.upvotes.length}}</td>
@@ -33,7 +47,7 @@
             </div>
         </div>
         <div class="four wide column">
-            <div id='popular_topics' class="ui orange card">
+            <div id='popular_topics' class="ui teal card">
                 <div class="content">
                     <div class="header">Popular Topics</div>
                 </div>
@@ -49,7 +63,7 @@
                     </div>
                 </div>
             </div>
-            <div id='popular_ninjas' class="ui orange card" ng-controller='userController'>
+            <div id='popular_ninjas' class="ui teal card" ng-controller='userController'>
                 <div class="content">
                     <div class="header">Popular Ninjas <img src="./../images/ninja_turtle.png" alt="" style="float: right"></i>
                     </div>

@@ -1,0 +1,25 @@
+
+<div class="ui menu" ng-controller='userController'>
+    <a class="header item" href="#!/dash"><img height="40" src="./../images/jack_stick.png" alt="SDF_Logo"></a>
+
+    <a class="item" href="#!/user/{{user.id}}">Profile</a>
+    <div class="ui simple dropdown item">
+        <span class="text">Topic</span>
+        <i class="dropdown icon"></i>
+        <div class="menu">
+            <a href="#!/topic/python"><div class="item">Python</div></a>
+            <a href="#!/topic/htmlcss"><div class="item">HTML / CSS</div></a>
+            <a href="#!/topic/mean"><div class="item">MEAN</div></a>
+            <a href="#!/topic/ruby"><div class="item">Ruby</div></a>
+            <a href="#!/topic/ios"><div class="item">iOS</div></a>
+            <a href="#!/topic/csharp"><div class="item">C# / ASP.NET</div></a>
+            <a href="#!/topic/misc"><div class="item">Misc</div></a>
+        </div>
+    </div>
+    <a class="item" href="#!/add_question">Add Question</a>
+    <span class="floated right item">Signed in as&nbsp;
+        <a href="#!/user/{{user.id}}" ng-if='user.name.length > 0'> {{user.name}}</a>
+    </span>
+    <a class="floated right item" ng-click='logOut()'>Log Out</a>
+</div>
+<br>
