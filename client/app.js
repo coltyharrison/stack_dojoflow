@@ -24,6 +24,10 @@ app.config(function($routeProvider) {
         templateUrl: 'partials/user.html',
         controller: 'userController'
     })
+    .when('/easter', {
+        templateUrl: 'partials/easter.html',
+        controller: 'questionController'
+    })
     .otherwise({
         redirectTo: '/'
     });
