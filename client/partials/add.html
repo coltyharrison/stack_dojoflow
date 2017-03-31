@@ -14,7 +14,7 @@
           <div class="field">
             <label class="field">Question Title:</label>
             <input class="field" placeholder="What's you programming question? Be specific." type="text" ng-model="newQuestion.title" required>
-          </div>
+          </div><br>
           <div class="ui grid">
 
             <div class="field">
@@ -25,6 +25,7 @@
                     <wiz-toolbar-button class="ui tiny button" command="italic">italic</wiz-toolbar-button>
                     <wiz-toolbar-button class="ui tiny button" command="heading">heading</wiz-toolbar-button>
                     <wiz-toolbar-button class="ui tiny button" command="ullist">uList</wiz-toolbar-button>
+                    <wiz-toolbar-button class="ui tiny button" command="ullist">oList</wiz-toolbar-button>
                     <wiz-toolbar-button class="ui tiny button" command="link">Link</wiz-toolbar-button>
                     <wiz-toolbar-button class="ui tiny button" command="img">Image</wiz-toolbar-button>
                     <wiz-toolbar-button class="ui tiny button" command="hr">&#60;hr&#62;</wiz-toolbar-button>
@@ -33,10 +34,11 @@
             </div>
 
 
-            <div id='the_preview' class='ui segment' ng-show="mdQuestion !== ''">
-                <h3>Preview:</h3>
-                <wiz-markdown content="mdQuestion"></wiz-markdown>
-            </div>
+
+          </div>
+          <div id='the_preview' class='ui segment' ng-show="mdQuestion !== ''">
+              <h3>Preview:</h3>
+              <wiz-markdown content="mdQuestion"></wiz-markdown>
           </div>
 
 
