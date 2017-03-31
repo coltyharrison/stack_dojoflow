@@ -23,12 +23,7 @@
                             <td><a href="#!/question/{{question._id}}">{{question.title}}</a></td>
                             <td><a href="#!/topic/{{question.topic}}">{{topicNames[question.topic]}}</a></td>
                             <td>
-                                <h4 class="ui image header">
-                            <img src="{{question._user.avatar_url}}" class="ui mini rounded image">
-                            <div class="content">
-                                <a href='#!/user/{{question._user.id}}'>{{question._user.name}}</a>
-                                <div class="sub header">Current Stack</div>
-                            </div></h4>
+                                    <a href='#!/user/{{question._user.id}}'>{{question._user.name}}</a>
                             </td>
                             <td>{{question.posted_at | date:'medium'}}</td>
                             <td>{{question.upvotes.length}}</td>
@@ -38,7 +33,7 @@
             </div>
         </div>
         <div class="four wide column">
-            <div id='popular_topics' class="ui teal card">
+            <div id='popular_topics' class="ui orange card">
                 <div class="content">
                     <div class="header">Popular Topics</div>
                 </div>
@@ -54,7 +49,7 @@
                     </div>
                 </div>
             </div>
-            <div id='popular_ninjas' class="ui teal card" ng-controller='userController'>
+            <div id='popular_ninjas' class="ui orange card" ng-controller='userController'>
                 <div class="content">
                     <div class="header">Popular Ninjas <img src="./../images/ninja_turtle.png" alt="" style="float: right"></i>
                     </div>
