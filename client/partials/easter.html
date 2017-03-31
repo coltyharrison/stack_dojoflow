@@ -12,32 +12,35 @@ body {
         <img height="110" src="images/jackoverflow.png">
         <img height="110" src="images/peep.gif">
     </div>
-    <h2>Questions</h2>
-    <p>Sort By: <a href="" ng-click="sortQuestion = '-posted_at'">Recent</a> | <a href="" ng-click="sortQuestion = '-upvotes.length'">Popular</a></p>
+    <p>Sort By: <a href="" ng-click="sortQuestion = '-posted_at'">Recent</a> | <a href="" ng-click="sortQuestion = '-upvotes.length'">Popular</a><a href="#!/easter">&nbsp;</a></p>
+    <div class="ui grid">
+        <div class="twelve wide column">
+            <div class="ui fluid input">
+                <input class='prompt' type='text' ng-model='questionSearch' placeholder="Search Questions...">
+            </div>
+        </div>
+    </div>
     <div class="ui grid">
         <div class="twelve wide column">
             <div id='popular_questions'>
-                <table class="ui teal celled table">
+                <table class="ui small orange celled table">
                     <thead>
                         <tr>
                             <th>Question</th>
                             <th>Topic</th>
-                            <th>Ninja Who Posted</th>
-                            <th>Posted Date</th>
+                            <th>Ninja</th>
+                            <th>Posted</th>
                             <th>Upvotes</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat='question in questions | orderBy : sortQuestion'>
-                            <td><a href="#!/question/{{question._id}}">{{question.title}}</a></td>
+                        <tr ng-repeat='question in questions | orderBy : sortQuestion | filter:questionSearch'>
+                            <td>
+                                <div class="dashtabletext"><a href="#!/question/{{question._id}}">{{question.title}}</a></div>
+                            </td>
                             <td><a href="#!/topic/{{question.topic}}">{{topicNames[question.topic]}}</a></td>
                             <td>
-                                <h4 class="ui image header">
-                            <img src="{{question._user.avatar_url}}" class="ui mini rounded image">
-                            <div class="content">
                                 <a href='#!/user/{{question._user.id}}'>{{question._user.name}}</a>
-                                <div class="sub header">Current Stack</div>
-                            </div></h4>
                             </td>
                             <td>{{question.posted_at | date:'medium'}}</td>
                             <td>{{question.upvotes.length}}</td>
@@ -47,7 +50,7 @@ body {
             </div>
         </div>
         <div class="four wide column">
-            <div id='popular_topics' class="ui teal card">
+            <div id='popular_topics' class="ui orange card">
                 <div class="content">
                     <div class="header">Popular Topics</div>
                 </div>
@@ -63,9 +66,9 @@ body {
                     </div>
                 </div>
             </div>
-            <div id='popular_ninjas' class="ui teal card" ng-controller='userController'>
+            <div id='popular_ninjas' class="ui orange card" ng-controller='userController'>
                 <div class="content">
-                    <div class="header">Popular Ninjas <img src="./../images/ninja_turtle.png" alt="" style="float: right"></i>
+                    <div class="header">Top Ninjas <img src="./../images/ninja_turtle.png" alt="" style="float: right"></i>
                     </div>
                 </div>
                 <div class="content" ng-repeat='user in users | orderBy: "-ninja_stars" | limitTo: 5'>
@@ -74,10 +77,11 @@ body {
                         {{user.name}}
                     </div>
                     <div class="metadata">
-                         <img src="images/ninjastar.png" height="20"> {{user.ninja_stars}}
-                     </div>
+                        <img src="images/ninjastar.png" height="20"> {{user.ninja_stars}}
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+    <footer></footer>
 </div>
