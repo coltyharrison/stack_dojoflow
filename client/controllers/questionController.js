@@ -47,7 +47,7 @@ app.controller('questionController', function($scope, $routeParams, questionFact
             name: 'Misc',
             questions: 0,
         }
-    ]
+    ];
 
     var index = function() {
         // if the user selects a question
