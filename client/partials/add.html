@@ -1,50 +1,49 @@
-<!-- /*<style type="text/css">
-  * {
-    border: 1px dotted red
-  }
-</style>*/ -->
+/*<style type="text/css">
+    #the_preview {
+        min-height: 205px;
+        overflow:scroll;
+    }
+</style>*/
 <div class="ui container">
     <nav-bar></nav-bar>
     <!-- <div class="ui segment center aligned">
         <img height="110" src="images/stackdojoflow.png">
     </div> -->
     <div class="ui padded segment">
-      <div class="ui form">
-        <form ng-submit="createQuestion()">
-          <div class="field">
-            <label class="field">Question Title:</label>
-            <input class="field" placeholder="What's you programming question? Be specific." type="text" ng-model="newQuestion.title" required>
-          </div><br>
-          <div class="ui grid">
+        <div class="ui form">
+            <form ng-submit="createQuestion()">
+                <div class="field">
+                    <label class="field">Question Title:</label>
+                    <input class="field" placeholder="What's you programming question? Be specific." type="text" ng-model="newQuestion.title" required>
+                </div><br>
+                <div class="ui grid">
+                    <div class="eight wide column">
+                        <div class="field">
+                            <wiz-markdown-editor content="mdQuestion">
+                                <div class="ui fluid buttons">
+                                    <wiz-toolbar-button class="ui tiny button" command="code">{code}</wiz-toolbar-button>
+                                    <wiz-toolbar-button class="ui tiny button" command="bold">bold</wiz-toolbar-button>
+                                    <wiz-toolbar-button class="ui tiny button" command="italic">italic</wiz-toolbar-button>
+                                    <wiz-toolbar-button class="ui tiny button" command="heading">heading</wiz-toolbar-button>
+                                    <wiz-toolbar-button class="ui tiny button" command="ullist">List</wiz-toolbar-button>
+                                    <wiz-toolbar-button class="ui tiny button" command="link">Link</wiz-toolbar-button>
+                                    <wiz-toolbar-button class="ui tiny button" command="hr">&#60;hr&#62;</wiz-toolbar-button>
+                                </div>
+                            </wiz-markdown-editor>
+                        </div>
+                    </div>
+                    <div class='eight wide column'>
 
-            <div class="field">
-                <wiz-markdown-editor content="mdQuestion">
-                  <div class="ui fluid buttons">
-                    <wiz-toolbar-button class="ui tiny button" command="code">{code}</wiz-toolbar-button>
-                    <wiz-toolbar-button class="ui tiny button" command="bold">bold</wiz-toolbar-button>
-                    <wiz-toolbar-button class="ui tiny button" command="italic">italic</wiz-toolbar-button>
-                    <wiz-toolbar-button class="ui tiny button" command="heading">heading</wiz-toolbar-button>
-                    <wiz-toolbar-button class="ui tiny button" command="ullist">uList</wiz-toolbar-button>
-                    <wiz-toolbar-button class="ui tiny button" command="ullist">oList</wiz-toolbar-button>
-                    <wiz-toolbar-button class="ui tiny button" command="link">Link</wiz-toolbar-button>
-                    <wiz-toolbar-button class="ui tiny button" command="img">Image</wiz-toolbar-button>
-                    <wiz-toolbar-button class="ui tiny button" command="hr">&#60;hr&#62;</wiz-toolbar-button>
-                  </div>
-                </wiz-markdown-editor>
-            </div>
+                        <div id='the_preview' class='ui segment left aligned'>
+                            <h3>Preview:</h3>
+                            <wiz-markdown content="mdQuestion"></wiz-markdown>
+                        </div>
+                    </div>
+                </div>
 
-
-
-          </div>
-          <div id='the_preview' class='ui segment' ng-show="mdQuestion !== ''">
-              <h3>Preview:</h3>
-              <wiz-markdown content="mdQuestion"></wiz-markdown>
-          </div>
-
-
-          <br>
-          <div class="field">
-              <select ng-model="newQuestion.topic" class="ui fluid dropdown" required>
+                <br>
+                <div class="field">
+                    <select ng-model="newQuestion.topic" class="ui fluid dropdown" required>
                 <option selected disabled value="">Topic</option>
                 <option value="python">Python</option>
                 <option value="htmlcss">HTML / CSS</option>
@@ -54,9 +53,9 @@
                 <option value="csharp">C# / ASP.NET</option>
                 <option value="misc">Misc</option>
               </select>
-          </div>
-          <button class="ui orange button"type="submit" name="button">Post Your Question</button>
-        </form>
-      </div>
+                </div>
+                <button class="ui orange button" type="submit" name="button">Post Your Question</button>
+            </form>
+        </div>
     </div>
 </div>
