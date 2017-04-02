@@ -1,6 +1,6 @@
 var passport = require('passport'),
-    GITHUB_CLIENT_ID = '426f5e6b58864fb3cc46',
-    GITHUB_CLIENT_SECRET = 'b9b25d4d73e4986a6c3b75e09562df225d478e11',
+    GITHUB_CLIENT_ID = process.env.CLIENT_ID,
+    GITHUB_CLIENT_SECRET = process.env.CLIENT_SECRET,
     path = require('path'),
     mongoose = require('mongoose'),
     User = mongoose.model('User'),
@@ -25,7 +25,7 @@ passport.deserializeUser(function(id, done) {
 passport.use(new GitHubStrategy({
     clientID: GITHUB_CLIENT_ID,
     clientSecret: GITHUB_CLIENT_SECRET,
-    callbackURL: 'http://localhost:8000/auth/github/callback'
+    callbackURL: LOCAL_URL + '/auth/github/callback'
 }, function(accessToken, refreshToken, profile, done) {
     User.update({
             id: profile._json.id
