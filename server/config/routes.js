@@ -1,6 +1,7 @@
 var passport = require('passport'),
     GITHUB_CLIENT_ID = process.env.CLIENT_ID,
     GITHUB_CLIENT_SECRET = process.env.CLIENT_SECRET,
+    LOCAL_URL = process.env.LOCAL_URL,
     path = require('path'),
     mongoose = require('mongoose'),
     User = mongoose.model('User'),
